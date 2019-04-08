@@ -165,8 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#　JDBC</p>
-<p>　持久化：把数据保存起来可供使用。持久化实现过程大多通过关系数据库来完成。通过JDBC直接访问数据库。JDBC是java访问数据库的基石。</p>
+        <h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p>　持久化：把数据保存起来可供使用。持久化实现过程大多通过关系数据库来完成。通过JDBC直接访问数据库。JDBC是java访问数据库的基石。</p>
 <p>JDBC驱动类型只了解本地协议的纯Java驱动程序。即Java应用程序–&gt;JDBC API–&gt;JDBC驱动程序–&gt;数据库</p>
 <p>Java.sql.Driver 接口是所有JDBC驱动程序需要实现的接口。这个接口是提供给数据库厂商使用的，不同数据库厂商提供不同的实现。<br>在程序中不需要直接去访问实现了Driver接口的类，而是由驱动程序管理类java.sql.DriverManager去调用这些Driver实现</p>
 <p>根据视频操作中有些类没有接触过java.util.Properties。里面用了put方法，我没有在API中看到这个实现方法，然后是propertyNames()这个文档中是说：返回属性列表中所有键的枚举，如果在主属性列表中未找到同名的键，则包括默认属性列表中不同的键。</p>
@@ -182,8 +181,7 @@
 <li>通过DriverManager的getConnection()方法获取数据库连接</li>
 </ol>
 <p>好处：可以通过重载的getConnection获取数据库，十分方便，且可以同时管理多个驱动程序（但是暂时无用）</p>
-<p>##　通过JDBC向指定数据表插入数据</p>
-<p>具体操作：</p>
+<h2 id="通过JDBC向指定数据表插入数据"><a href="#通过JDBC向指定数据表插入数据" class="headerlink" title="通过JDBC向指定数据表插入数据"></a>通过JDBC向指定数据表插入数据</h2><p>具体操作：</p>
 <ol>
 <li>获取数据库连接</li>
 <li>准备插入SQL语句</li>
@@ -194,7 +192,6 @@
 </ul>
 </li>
 <li>关闭连接</li>
-<li></li>
 </ol>
 <p>问题：当运行代码的时候数据库并没有添加成功。然后重新观察在连接居然无法连接成功，注释掉添加的代码后还是无法连接到数据库。改着改着只剩下Run On Server了无法在Junit Test上运行而错误也成为了没有运行的方法。但是原来是找不到文件。然后换了一个文件夹重新操作复制粘贴，结果成功了，成功了！！！</p>
 
