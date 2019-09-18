@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>网站标题</title>
+  <title>HLJ的bolg</title>
   
-  <subtitle>网站副标题</subtitle>
+  <subtitle>Java笔记</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hulinjian.com/"/>
@@ -10,7 +10,7 @@
   <id>http://hulinjian.com/</id>
   
   <author>
-    <name>网站作者名字</name>
+    <name>小白随笔</name>
     
   </author>
   
