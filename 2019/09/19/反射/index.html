@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://hulinjian.com">
-  <title>Archives | 分享</title>
+  <title>分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java学习笔记">
-<meta property="og:type" content="website">
+  <meta name="description" content="反射原先获取类对象的步骤是先导入程序说在的包，类，在通过类实例化对象，最后通过对象调用类中的方法。而反射刚好相反，通过对象来调用。 java.lang.Class操作类 反射与工厂设计模式反射实例化与正常实例化有什么区别。或者说反射实例化有什么用。 通过工厂设计模式来解决：最大特点是客户端的程序类不直接牵扯到对象的实例化管理，只与接口发生关联，通过工厂类获取指定接口的实例化。通过反射可以提高代码复">
+<meta property="og:type" content="article">
 <meta property="og:title" content="分享">
-<meta property="og:url" content="http://hulinjian.com/archives/index.html">
+<meta property="og:url" content="http://hulinjian.com/2019/09/19/反射/index.html">
 <meta property="og:site_name" content="分享">
-<meta property="og:description" content="Java学习笔记">
+<meta property="og:description" content="反射原先获取类对象的步骤是先导入程序说在的包，类，在通过类实例化对象，最后通过对象调用类中的方法。而反射刚好相反，通过对象来调用。 java.lang.Class操作类 反射与工厂设计模式反射实例化与正常实例化有什么区别。或者说反射实例化有什么用。 通过工厂设计模式来解决：最大特点是客户端的程序类不直接牵扯到对象的实例化管理，只与接口发生关联，通过工厂类获取指定接口的实例化。通过反射可以提高代码复">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-23T12:23:20.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享">
-<meta name="twitter:description" content="Java学习笔记">
+<meta name="twitter:description" content="反射原先获取类对象的步骤是先导入程序说在的包，类，在通过类实例化对象，最后通过对象调用类中的方法。而反射刚好相反，通过对象来调用。 java.lang.Class操作类 反射与工厂设计模式反射实例化与正常实例化有什么区别。或者说反射实例化有什么用。 通过工厂设计模式来解决：最大特点是客户端的程序类不直接牵扯到对象的实例化管理，只与接口发生关联，通过工厂类获取指定接口的实例化。通过反射可以提高代码复">
   
     <link rel="alternative" href="/atom.xml" title="分享" type="application/atom+xml">
   
@@ -153,235 +154,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-反射" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>原先获取类对象的步骤是先导入程序说在的包，类，在通过类实例化对象，最后通过对象调用类中的方法。而反射刚好相反，通过对象来调用。</p>
+<p>java.lang.Class操作类</p>
+<h3 id="反射与工厂设计模式"><a href="#反射与工厂设计模式" class="headerlink" title="反射与工厂设计模式"></a>反射与工厂设计模式</h3><p>反射实例化与正常实例化有什么区别。或者说反射实例化有什么用。</p>
+<p>通过工厂设计模式来解决：最大特点是客户端的程序类不直接牵扯到对象的实例化管理，只与接口发生关联，通过工厂类获取指定接口的实例化。通过反射可以提高代码复用。具体如代码：</p>
+<h3 id="反射与单例设计模式"><a href="#反射与单例设计模式" class="headerlink" title="反射与单例设计模式"></a>反射与单例设计模式</h3><p>在类的内部参数实例化对象后通过static方法获取实例化对象。实现类中的结果调用。</p>
+<hr>
+<h3 id="反射的基本操作"><a href="#反射的基本操作" class="headerlink" title="反射的基本操作"></a>反射的基本操作</h3><ul>
+<li>获取包名：public package getPackage()</li>
+<li><p>获取父接口名：public class[] getInterfaces()</p>
+</li>
+<li><p>获取所有构造方法：public Constructor&lt;?&gt;[] getDeclaredConstruetors()</p>
+</li>
+<li>获取指定构造方法：public Constructor&lt;?&gt; getDeclaredConstruetor()</li>
+<li>获取所有构造方法：public Constructor&lt;?&gt;[] getConstructions()</li>
+<li>获取指定构造方法：public Constructor&lt;?&gt;getConstruction()</li>
+<li>获取全部方法：public Method[] getMethods() </li>
+<li>获取指定方法：public Method[] getMethod(String name,Class&lt;?&gt;…parameterTypes)</li>
+<li>获取本类全部方法：public Method getDeclareMethod()</li>
+<li><p>获取本类指定的方法：public Method getDeclareMethod(String name,Class&lt;?&gt;…. parameterTypes)</p>
+</li>
+<li><p>反射类中的方法：<strong>public Object invoke(Object obj,Object…args)</strong></p>
+</li>
+<li><p>获取本类全部成员：public Field[] getDeclaredFields()</p>
+</li>
+<li>获取本类指定成员：public Field getDeclaredField()</li>
+<li><p>获取父类全部成员：public Field[] getFields() </p>
+</li>
+<li><p>获取父类指定成员：public Field getFields(String name)</p>
+</li>
+<li><p>设置属性内容：public void set(Object obj,Object value)</p>
+</li>
+<li><p>获取属性内容：public Object get(Object obj)</p>
+</li>
+<li><p>解除封装：public void setAccessible()</p>
+</li>
+<li><p>获取成员类型：<strong>public Class&lt;?&gt; getType()</strong></p>
+</li>
+</ul>
+<h4 id="Unsafe"><a href="#Unsafe" class="headerlink" title="Unsafe"></a>Unsafe</h4><p>除了JVM外，Java也提供了一个Unsafe类，这个类的主要特点是可以利用反射来获取对象，并且直接使用底层的C++代替JVM执行，但是这样就无法使用JVM的内存管理机制，以及垃圾回收处理。Unsafe类中没有static方法，需要使用反射机制来获取类对象。</p>
+<ul>
+<li>构造方法：private Unsafe()</li>
+<li>私有常量：private static final Unsafe theUnsafe =new  UnSafe();</li>
+</ul>
+<h4 id="级联对象"><a href="#级联对象" class="headerlink" title="级联对象"></a>级联对象</h4><p>通过级联的配置自动实现类中属性的实例化</p>
+<h3 id="ClassLoader类加载器"><a href="#ClassLoader类加载器" class="headerlink" title="ClassLoader类加载器"></a>ClassLoader类加载器</h3><h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><ul>
+<li><p>代理对象：public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interface,InvacationHandler h);</p>
+<h3 id="反射获取Annotation"><a href="#反射获取Annotation" class="headerlink" title="反射获取Annotation"></a>反射获取Annotation</h3></li>
+<li><p>获取全部Annotation：public Annotation[] getAnnoatations()</p>
+</li>
+<li>获取指定Annotation：public <t extends annotation>T getAnnoatation(Class&lt;&gt; annotation)</t></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果啊<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/红黑树/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://hulinjian.com/2019/09/19/反射/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/反射/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/File类基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2019/09/19/红黑树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/19/File类基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字节字符输出流/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字符流和字节流基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/正则表达/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/链表/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/基础类库/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.522Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/监听器/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:52.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/JSP/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:32.572Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -405,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

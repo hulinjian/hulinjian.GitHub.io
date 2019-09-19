@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://hulinjian.com">
-  <title>Archives | 分享</title>
+  <title>分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java学习笔记">
-<meta property="og:type" content="website">
+  <meta name="description" content="网络编程网络的核心定义在于，有两台以上的电脑就称为网络。 网络编程就是实现通讯的目的。分为客户端和服务器端。 两种模型  Client/Server(客户端与服务器端)：写两套程序，安全性高，但开发和危害成本高。  TCP(可靠的数据连接)、UDP(不可靠的数据连接)   Browse/Server(浏览器与服务器端)：一套程序，安全性较低   ###　TCP程序的基本实现 TCP核心使用两个类实">
+<meta property="og:type" content="article">
 <meta property="og:title" content="分享">
-<meta property="og:url" content="http://hulinjian.com/archives/index.html">
+<meta property="og:url" content="http://hulinjian.com/2019/09/19/网络编程/index.html">
 <meta property="og:site_name" content="分享">
-<meta property="og:description" content="Java学习笔记">
+<meta property="og:description" content="网络编程网络的核心定义在于，有两台以上的电脑就称为网络。 网络编程就是实现通讯的目的。分为客户端和服务器端。 两种模型  Client/Server(客户端与服务器端)：写两套程序，安全性高，但开发和危害成本高。  TCP(可靠的数据连接)、UDP(不可靠的数据连接)   Browse/Server(浏览器与服务器端)：一套程序，安全性较低   ###　TCP程序的基本实现 TCP核心使用两个类实">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-31T10:02:31.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享">
-<meta name="twitter:description" content="Java学习笔记">
+<meta name="twitter:description" content="网络编程网络的核心定义在于，有两台以上的电脑就称为网络。 网络编程就是实现通讯的目的。分为客户端和服务器端。 两种模型  Client/Server(客户端与服务器端)：写两套程序，安全性高，但开发和危害成本高。  TCP(可靠的数据连接)、UDP(不可靠的数据连接)   Browse/Server(浏览器与服务器端)：一套程序，安全性较低   ###　TCP程序的基本实现 TCP核心使用两个类实">
   
     <link rel="alternative" href="/atom.xml" title="分享" type="application/atom+xml">
   
@@ -153,235 +154,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-网络编程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><p>网络的核心定义在于，有两台以上的电脑就称为网络。</p>
+<p>网络编程就是实现通讯的目的。分为客户端和服务器端。</p>
+<p>两种模型</p>
+<ul>
+<li><p>Client/Server(客户端与服务器端)：写两套程序，安全性高，但开发和危害成本高。</p>
+<ul>
+<li>TCP(可靠的数据连接)、UDP(不可靠的数据连接)</li>
+</ul>
+</li>
+<li><p>Browse/Server(浏览器与服务器端)：一套程序，安全性较低</p>
+</li>
+</ul>
+<p>###　TCP程序的基本实现</p>
+<p>TCP核心使用两个类实现交互处理：ServerSocket(服务器端)、Socket(客户端)</p>
+<p>所有的服务器必须要有一个监听端口：通过ServerSocket来指派这个监听端口。端口客户端操作过程中通过Socket来描述，Socket要指明连接的服务器和端口</p>
+<p>Echo模型：最典型客户端和服务器端的沟通模型。</p>
+<ul>
+<li>客户端：键盘输入数据，将数据发送到服务器端；<ul>
+<li>输入：通过Scanner包装InputStream(抽象类)</li>
+<li>输出：用PrintStream包装OutputSream</li>
+<li>键盘输入数据需要输入流.BufferReader，向服务器端的输入就是客户端的输出</li>
+</ul>
+</li>
+</ul>
+<p>Echo是什么:Echo是为用Java开发Web应用程序提供的一个面向对象,事件驱动的框架。使用Echo 框架来编程类似于使用Swing API来开发应用程序或applets </p>
+<p>由于重装系统出现无法找打Telenet，网上找到一个说法是安装的是精简版win10重装系统就可以了。what重装系统，怎么可能，再下载这些东西都不知道花多少时间。然后找到一个解决方案，里面3种方法，最简单的是在win10商店下载Telnet我看了下我没这个商店，这是什么情况。好换一种在控制面板输入sfc /SCANNOW即可，结果我只扫描到19%出现(Windows 资源保护找到了损坏文件但无法修复其中某些文件。CBS.Log windir\Logs\CBS\CBS.log 中有详细信息。例如 C:\Windows\Logs\CBS\CBS.log。请注意，在脱机服务方案中，当前不支持日志记录。)what ,崩溃 最后一种方法查看日志，但是日志不会用和改，图片不模糊无参考。然后尝试在线安装，各种命令行都不可用，具体原因不知。在选择直接下载Telnet但是任然无法实现。官网下载出现404-File   然后选择直接下载。成功是成功了 但是程序仍然无法运行。问题暂时未找到解决方案</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果啊<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/红黑树/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://hulinjian.com/2019/09/19/网络编程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/反射/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/File类基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2019/09/19/JSP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/18/过滤器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字节字符输出流/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字符流和字节流基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/正则表达/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/链表/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/基础类库/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.522Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/监听器/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:52.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/JSP/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:32.572Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -405,8 +345,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

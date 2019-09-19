@@ -155,46 +155,65 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-过滤器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h1><p><strong>JavaWeb三大组件：Servlet，Listener(2个感知监听器不需要配置)，Filter</strong></p>
-<p>过滤器会在一组资源（jsp，servlet，css，html等等）的前面执行；</p>
-<p>他可以让请求得到目标资源，也可以不让请求达到，过滤器有拦截请求的能力。Filter是单例的。</p>
-<h3 id="Filter接口"><a href="#Filter接口" class="headerlink" title="Filter接口"></a>Filter接口</h3><ul>
-<li>void init(FilterConfig )创建之后执行，Filter会在服务器启动时创建</li>
-<li>void destroy()销毁之前执行，在服务器关闭时销毁</li>
-<li>void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)每次过滤都会执行</li>
-</ul>
-<p>FilterConfig–&gt;与ServletConfig相似</p>
+        <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><h4 id="笔记："><a href="#笔记：" class="headerlink" title="笔记："></a>笔记：</h4><p>红黑树本质是一种二叉查找数，但是在二叉查找树的基础上额外添加了一个标记(颜色),同时具有一定的规则。这些规则使红黑树保证一种平衡，插入，删除，查找的最坏时间复杂度都是O(logn)。</p>
+<p>红黑树的本质就是在节点上追加了一个表示颜色的操作信息。</p>
+<p><strong>红黑树特点</strong></p>
+<ol>
+<li><p>每个节点或者是黑色，或者是红色</p>
+</li>
+<li><p>根节点必须是黑色</p>
+</li>
+<li><p>每个叶子节点是黑色</p>
 <ul>
-<li>获取参数参数：getInitParameter()</li>
-<li>获取过滤器名称：getFilterName()</li>
-<li>获取application：getServletContext()</li>
+<li>Java实现的红黑树将使用null来代表空节点，因此遍历红黑树时将看不到黑色的叶子节点，反而看到每个叶子节点都是红色的。</li>
 </ul>
-<h4 id="FilterChain"><a href="#FilterChain" class="headerlink" title="FilterChain"></a>FilterChain</h4><p>doFilter(ServletRequest,ServletResponse)方法的参数中有一个类型为FilterChain的参数，它只有一个方法，一个目标资源上可以部署多个过滤器，所以调用FilterChain类的doFilter()方法表示的是执行下一个过滤器的doFilter方法，或者是执行目标资源！如果当前过滤器是最后一个过滤器，那么调用chain.doFilter()方法表示执行目标资源，而不是最后一个过滤器，那么chain.doFilter()表示执行下一个过滤器的doFilter()方法。</p>
-<p>FilterChain#doFilter()方法：执行目标资源，或是执行下一个过滤器！如果没有下一个过滤器那么执行的是目标资源，如果有则执行下一个过滤器。</p>
-<h3 id="过滤器的4种拦截方式"><a href="#过滤器的4种拦截方式" class="headerlink" title="过滤器的4种拦截方式"></a>过滤器的4种拦截方式</h3><ul>
-<li>请求 DISPATCHER</li>
-<li>转发 FORWARD</li>
-<li>包含 INCLUDE</li>
-<li>错误 ERROR</li>
+</li>
+<li><p>如果一个节点是红色的，则它的子节点必须是黑色的；</p>
+<ul>
+<li>从每个根节点的路径上不会有两个连续的红蛇节点，但黑色节点是可以连续的。若给定黑色节点的个数N，最短路径的情况是连续的N个黑色，数的高度为N-1;最长路径的情况为节点红黑相间，树的高度为2(N-1)</li>
 </ul>
-<h3 id="控制过滤器执行顺序"><a href="#控制过滤器执行顺序" class="headerlink" title="控制过滤器执行顺序"></a>控制过滤器执行顺序</h3><p>多个过滤器的执行顺</p>
-<p>在<filter-mapping>的配置顺序决定了过滤器的执行顺序</filter-mapping></p>
-<h3 id="过滤器应用场景"><a href="#过滤器应用场景" class="headerlink" title="过滤器应用场景"></a>过滤器应用场景</h3><ul>
-<li>执行目标之前做预处理工作,列如设置编码，这种通常都会放行，只是在目标资源执行之前做一个准备工作</li>
-<li>通过调节判断是否放行，例如检验当前用户是否已经登录，或者用户IP是否已经被禁用；</li>
-<li>在目标资源执行后，做一个后续的特殊处理工作，如吧目标资源输出的数据进行处理。</li>
+</li>
+<li>从一个节点到改节点的子孙节点的所有路径上包含相同数目的黑节点数量；<ul>
+<li>成为红黑树最主要的条件，后续的插入、删除操作都是为了遵循这个规定；</li>
 </ul>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><ul>
-<li>分IP统计网站的访问次数</li>
-<li>粗粒度权限管理（404）</li>
-<li>字符乱码问题(get方法直接400)</li>
-<li>图书管理</li>
+</li>
+</ol>
+<h5 id="数据插入处理："><a href="#数据插入处理：" class="headerlink" title="数据插入处理："></a>数据插入处理：</h5><ol>
+<li>第一次插入，由于原树为空，所以只需要将根节点涂黑。</li>
+<li>如果插入的节点的父节点是黑色，什么都不需要做；但是出现以下情况，就要开始变色和旋转。<ul>
+<li>插入节点的父节点和其叔叔节点(与父节点相对的节点)均为红色；</li>
+<li>插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的左子节点。</li>
+<li>插入节点的父节点是红色，叔叔节点是黑色，且插入节点是其父节点的右子节点</li>
 </ul>
+</li>
+</ol>
+<h5 id="数据删除处理-借助图形理解"><a href="#数据删除处理-借助图形理解" class="headerlink" title="数据删除处理:(借助图形理解)"></a>数据删除处理:(借助图形理解)</h5><ol>
+<li><p>删除操作后，如果当前节点是黑的的根节点，那么不用任何操作，因为并没有破坏树的平衡性</p>
+</li>
+<li><p>如果当前及节点是红色的，说明刚刚一走的后继节点是黑色的，那么不管后继节点的父节点是啥颜色，只要将当前节点涂黑就可以了，红-黑树平衡性可以恢复。</p>
+</li>
+<li><p>遇到如下情况，需要变色或旋转来恢复红黑树平衡</p>
+<ul>
+<li><p>当前节点是黑色的，且兄弟节点是红色的(那么父节点和兄弟节点的子节点肯定是黑色的)</p>
+<p>解决1：父节点变红，兄弟节点变黑，以父节点作为支点进行左旋，此时父支点为红，边上节点全为黑。</p>
+</li>
+<li><p>当前节点是黑色的，且兄弟节点是黑色的，且兄弟节点的两个子节点均为黑色的</p>
+<p>解决2：兄弟节点变红，之口看规解决3，4</p>
+</li>
+<li><p>当前节点是黑色的，且兄弟节点是黑色的，且兄弟节点的左子节点是红色，右子节点是黑色</p>
+<p>解决3：兄弟节点变红，兄弟节点左子节点涂黑，然后以兄弟节点作为支点进行右旋</p>
+</li>
+<li><p>当前节点是黑色的，且兄弟节点是黑色的，且兄弟节点的右子节点是红色，左子节点任意颜色。</p>
+<p>解决4：兄弟节点变为与父节点同色，父节点变黑，兄弟节点的右子节点涂黑，然后以父节点为支点进行左旋。</p>
+</li>
+</ul>
+</li>
+</ol>
 
       
 
@@ -207,7 +226,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/过滤器/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/19/红黑树/">展开全文 >></a>
         </p>
       
 
@@ -237,35 +256,62 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/09/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-09T11:57:58.788Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>原先获取类对象的步骤是先导入程序说在的包，类，在通过类实例化对象，最后通过对象调用类中的方法。而反射刚好相反，通过对象来调用。</p>
+<p>java.lang.Class操作类</p>
+<h3 id="反射与工厂设计模式"><a href="#反射与工厂设计模式" class="headerlink" title="反射与工厂设计模式"></a>反射与工厂设计模式</h3><p>反射实例化与正常实例化有什么区别。或者说反射实例化有什么用。</p>
+<p>通过工厂设计模式来解决：最大特点是客户端的程序类不直接牵扯到对象的实例化管理，只与接口发生关联，通过工厂类获取指定接口的实例化。通过反射可以提高代码复用。具体如代码：</p>
+<h3 id="反射与单例设计模式"><a href="#反射与单例设计模式" class="headerlink" title="反射与单例设计模式"></a>反射与单例设计模式</h3><p>在类的内部参数实例化对象后通过static方法获取实例化对象。实现类中的结果调用。</p>
+<hr>
+<h3 id="反射的基本操作"><a href="#反射的基本操作" class="headerlink" title="反射的基本操作"></a>反射的基本操作</h3><ul>
+<li>获取包名：public package getPackage()</li>
+<li><p>获取父接口名：public class[] getInterfaces()</p>
+</li>
+<li><p>获取所有构造方法：public Constructor&lt;?&gt;[] getDeclaredConstruetors()</p>
+</li>
+<li>获取指定构造方法：public Constructor&lt;?&gt; getDeclaredConstruetor()</li>
+<li>获取所有构造方法：public Constructor&lt;?&gt;[] getConstructions()</li>
+<li>获取指定构造方法：public Constructor&lt;?&gt;getConstruction()</li>
+<li>获取全部方法：public Method[] getMethods() </li>
+<li>获取指定方法：public Method[] getMethod(String name,Class&lt;?&gt;…parameterTypes)</li>
+<li>获取本类全部方法：public Method getDeclareMethod()</li>
+<li><p>获取本类指定的方法：public Method getDeclareMethod(String name,Class&lt;?&gt;…. parameterTypes)</p>
+</li>
+<li><p>反射类中的方法：<strong>public Object invoke(Object obj,Object…args)</strong></p>
+</li>
+<li><p>获取本类全部成员：public Field[] getDeclaredFields()</p>
+</li>
+<li>获取本类指定成员：public Field getDeclaredField()</li>
+<li><p>获取父类全部成员：public Field[] getFields() </p>
+</li>
+<li><p>获取父类指定成员：public Field getFields(String name)</p>
+</li>
+<li><p>设置属性内容：public void set(Object obj,Object value)</p>
+</li>
+<li><p>获取属性内容：public Object get(Object obj)</p>
+</li>
+<li><p>解除封装：public void setAccessible()</p>
+</li>
+<li><p>获取成员类型：<strong>public Class&lt;?&gt; getType()</strong></p>
+</li>
+</ul>
+<h4 id="Unsafe"><a href="#Unsafe" class="headerlink" title="Unsafe"></a>Unsafe</h4><p>除了JVM外，Java也提供了一个Unsafe类，这个类的主要特点是可以利用反射来获取对象，并且直接使用底层的C++代替JVM执行，但是这样就无法使用JVM的内存管理机制，以及垃圾回收处理。Unsafe类中没有static方法，需要使用反射机制来获取类对象。</p>
+<ul>
+<li>构造方法：private Unsafe()</li>
+<li>私有常量：private static final Unsafe theUnsafe =new  UnSafe();</li>
+</ul>
+<h4 id="级联对象"><a href="#级联对象" class="headerlink" title="级联对象"></a>级联对象</h4><p>通过级联的配置自动实现类中属性的实例化</p>
+<h3 id="ClassLoader类加载器"><a href="#ClassLoader类加载器" class="headerlink" title="ClassLoader类加载器"></a>ClassLoader类加载器</h3><h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><ul>
+<li><p>代理对象：public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interface,InvacationHandler h);</p>
+<h3 id="反射获取Annotation"><a href="#反射获取Annotation" class="headerlink" title="反射获取Annotation"></a>反射获取Annotation</h3></li>
+<li><p>获取全部Annotation：public Annotation[] getAnnoatations()</p>
+</li>
+<li>获取指定Annotation：public <t extends annotation>T getAnnoatation(Class&lt;&gt; annotation)</t></li>
+</ul>
 
       
 
@@ -278,7 +324,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/19/反射/">展开全文 >></a>
         </p>
       
 
@@ -308,172 +354,31 @@
 
 
   
-    <article id="post-JDBC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-File类基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p>　持久化：把数据保存起来可供使用。持久化实现过程大多通过关系数据库来完成。通过JDBC直接访问数据库。JDBC是java访问数据库的基石。</p>
-<p>JDBC驱动类型只了解本地协议的纯Java驱动程序。即Java应用程序–&gt;JDBC API–&gt;JDBC驱动程序–&gt;数据库</p>
-<p>Java.sql.Driver 接口是所有JDBC驱动程序需要实现的接口。这个接口是提供给数据库厂商使用的，不同数据库厂商提供不同的实现。<br>在程序中不需要直接去访问实现了Driver接口的类，而是由驱动程序管理类java.sql.DriverManager去调用这些Driver实现</p>
-<p>根据视频操作中有些类没有接触过java.util.Properties。里面用了put方法，我没有在API中看到这个实现方法，然后是propertyNames()这个文档中是说：返回属性列表中所有键的枚举，如果在主属性列表中未找到同名的键，则包括默认属性列表中不同的键。</p>
-<p>具体操作：</p>
-<ol>
-<li>准备驱动的全类名，JDBC URL，user，password等东西。<ul>
-<li>获取jdbc.properties对应输入流</li>
-<li>加载对应的输入流</li>
-<li>决定字符串</li>
-</ul>
-</li>
-<li>加载驱动程序(通过反射的方式完成，反射没学，先用直接用着看)</li>
-<li>通过DriverManager的getConnection()方法获取数据库连接</li>
-</ol>
-<p>好处：可以通过重载的getConnection获取数据库，十分方便，且可以同时管理多个驱动程序（但是暂时无用）</p>
-<h2 id="通过JDBC向指定数据表插入数据"><a href="#通过JDBC向指定数据表插入数据" class="headerlink" title="通过JDBC向指定数据表插入数据"></a>通过JDBC向指定数据表插入数据</h2><p>具体操作：</p>
-<ol>
-<li>获取数据库连接</li>
-<li>准备插入SQL语句</li>
-<li>执行插入<ul>
-<li>获取SQL语句的Statement对象：调用Connection的createStatement()方法来获取</li>
-<li>调用Statement对象的executeUpdate(sql)执行SQL语句进行插入</li>
-<li>关闭Statement对象</li>
-</ul>
-</li>
-<li>关闭连接</li>
-</ol>
-<p>神奇的SQL注入：<strong>select * from users where username=’a’ or password = ‘ and password = ‘or ‘1’=’1’;</strong>当用户登录的时候账号输入：‘a’ or password = 密码输入：or ‘1’=‘1’即可直接登入跳过审核。</p>
-<hr>
-<p>###　通过反射及元数据编写通用查询方法</p>
+        <h1 id="File类基本操作"><a href="#File类基本操作" class="headerlink" title="File类基本操作"></a>File类基本操作</h1><p><strong>java.io.File中的操作</strong></p>
+<p>关键方法：</p>
 <ul>
-<li>利用SQL进行查询获得结果集</li>
-<li>利用反射创建实例类的对象，</li>
-<li>获取结果集的类的别名：</li>
-<li>再获取结果集的每一列的值，结合3得到一个Map，键，列的别名，值，列的值</li>
-<li>再利用反射为2的对应的属性赋值，属性即为Map的键，值即为Map的值</li>
+<li>构造方法：public File(File parentname），设置要操作的完整路径</li>
+<li><p>构造方法：public File(File parent, String child)，设置父路径与子目录</p>
+</li>
+<li><p>创建新的文件：public boolean createNewFile()，文件不存在则创建文件返回true，文件存在则返回false</p>
+</li>
+<li><p>判断文件是否存在：public boolean exits()，</p>
+</li>
+<li><p>删除文件：public boolean delete();</p>
+</li>
+<li>获取父路径：public File getParentFile();</li>
+<li>创建目录：public boolean mkdirs();</li>
+<li>判断文件是否可读/写：public boolean canRead()/canWrite();</li>
+<li>获取文件长度：public long length();</li>
+<li>判断是否是目录：public boolean isDirectory();</li>
+<li>判断是否是文件：public boolean isFile();</li>
+<li>列出目录内容：public File[] listFiles();</li>
 </ul>
-<p><strong>使用JDBC驱动程序处理元数据</strong></p>
-<ul>
-<li>Java通过JDBC获得连接后，得到一个Connection读写，可以从这个对象获得有关数据库系统的各种信息</li>
-<li>获取这些信息的方法是在DatabaseMetaData类的对象上实现的，而DataBaseMetaData对象是在Connection对象上获得</li>
-</ul>
-<h4 id="ResultSetMaetaData"><a href="#ResultSetMaetaData" class="headerlink" title="ResultSetMaetaData"></a>ResultSetMaetaData</h4><ol>
-<li><p>使用情况：当有一个结果集，但不知道该结果集中有多少列，列的名字都是什么可以使用ResultSetMaetaData。</p>
-</li>
-<li><p>编写程序通用的查询方法时需要使用：public <t> T get (Class<t> clazz,String sql,Object…args)</t></t></p>
-</li>
-<li><p>用于描述ResultSet对象</p>
-</li>
-<li>如何得到：通过ResultSet的getMetaDate()方法来得到。然后通过里面的两个方法来获取键和值，建立Map对象。</li>
-</ol>
-<h4 id="通用查询方法"><a href="#通用查询方法" class="headerlink" title="通用查询方法"></a>通用查询方法</h4><p>可以根据传入的SQL和claas对象返回对应的记录的对象。</p>
-<p>实现该方法需要综合使用反射，JDBC，JDBC元数据的知识。</p>
-<ol>
-<li>得到ResultSet对象。</li>
-<li>得到ResultSetMetaData对象</li>
-<li>创建一个Map&lt;String,Object&gt;对象，键:SQL查询的别名，值列的值</li>
-<li>处理结果集，利用ResultSetMetADate对象填充结果集</li>
-<li>若反射不为空，</li>
-<li>遍历Map对象，利用反射为Class对象的对应属性赋值</li>
-</ol>
-<h3 id="DAO"><a href="#DAO" class="headerlink" title="DAO"></a>DAO</h3><p>可实现功能的模块化，有利于功能的维护和升级。</p>
-<p>DAO是什么：访问数据信息的类，包含对数据的CRUD(create,read,update,delete),而不包含任何业务相关的信息。</p>
-<p>实现JDBC编写DAO可能会包含的方法</p>
-<ul>
-<li>void update(String sql,Object … objects):更新数据sql可以是update,select,delete</li>
-<li><t> T get(Class<t> clazz,String sql,Object … objects):查询一条数据，返回对应的对象</t></t></li>
-<li><t>List<t>getForList(Class<t> clazz,String sql,Object … args):查询多条数据，返回对应的对象的集合</t></t></t></li>
-<li><e> E getForValue(String sql,Object … args):返回某条记录的某一个字段的值或一个统计的值</e></li>
-</ul>
-<hr>
-<h3 id="Oracle-LOB"><a href="#Oracle-LOB" class="headerlink" title="Oracle LOB"></a>Oracle LOB</h3><ul>
-<li><p>LOB是用来存储大量的二进制和文本的一种数据类型分两种类型内部LOB和外部LOB</p>
-</li>
-<li><p>,MySql BLOB：BLOB是一个二进制大型对象，是一个可以存储大量数据的容器，它能容纳不同大小的属性，类型TinyBlob(255),Blob(65k),MediumBlob(16M),LongBlob(4G)</p>
-</li>
-</ul>
-<h3 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h3><ul>
-<li><p>在数据库中，所谓事务是指一组逻辑操作单元，使数据从一种状态变换到领一种状态。</p>
-</li>
-<li><p>事务的操作:先定义开始一个事务，然后对数据作修改操作，这时如果提交，这些修改就永久的保存下来，如果回退，数据库管理系统将放弃所作的修改而回到开始事务时的状态。</p>
-</li>
-<li><p>事务的ACID属性;原子性，一致性，隔离性，持久性。</p>
-<ul>
-<li>原子性：原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</li>
-<li>一致性：事务必须使数据库从一个一致性状态变化到另外一个一致性状态</li>
-<li><p>隔离性：事务的隔离性是指一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据的并非的其他1事务是隔离的，并发执行的各个事务之间不能互相干扰。</p>
-</li>
-<li><p>持久性指一个事务一旦被提交，它对数据库中数据点改变就是永久性的，接下来的其他操作和数据库故障不应该对其有任何影响</p>
-</li>
-</ul>
-<h3 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h3><p>当一个连接对象被创建时，默认情况下是自动提交事务：每次执行一个SQL语句时，如果执行成功，就会想数据库自动提交，而不能回滚</p>
-<p>为了让多个SQL语句作为一个事务执行：</p>
-<ul>
-<li>调用Connection对象的setAutoCommit(false)取消自动提交事务</li>
-<li>在所有SQ语句都成功执行后，调用commit()方法提交事务</li>
-<li>在出现异常时，调用rollback();方法回滚事务</li>
-<li>若此时Connection没有被关闭，则需要回复其自动提交状态</li>
-</ul>
-<p>脏读：对于T1,T2两个事务，T1读取了语句被T2更新但没有被提交的字段后，T2回滚,T1读取的内容就是临时且无效的</p>
-<p>不可重复读：对于两个事务T1，T2，T1读取了一个字段，然后T2更新了该字段后，T1再次读取同一个字段，值就不同。</p>
-<p>幻读：对于T1,T2两个事务，T1从一个表中读取了一个字段，然后T2在该表中插入一些新的慌之后，如果T1再次读取同一个表就会多出几行。</p>
-<p><strong>数据事务的隔离性</strong>：数据库系统必须具有隔离并发运行各个事务的能力，使他们不会相互影响，避免各种并发问题。一个事务与其他事务的隔离程度称为隔离级别，隔离级别越高，数据的一致性越好，并发性越弱。</p>
-<p><strong>事务的4种事务隔离级别</strong>：读未提交数据，读以提交数据，可重复读，串行话（独立提交最为合适）</p>
-</li>
-</ul>
-<hr>
-<h3 id="关于一些类库及其使用的说明"><a href="#关于一些类库及其使用的说明" class="headerlink" title="关于一些类库及其使用的说明"></a>关于一些类库及其使用的说明</h3><p>由于里面使用了一些类库之前并未接触所以从API中找到文档做一下笔记</p>
-<ul>
-<li><p>java.sql.Statement：用于执行静态 SQL 语句并返回它所生成结果的对象。</p>
-<ul>
-<li>boolean execute(String sql)  执行给定的 SQL 语句，该语句可能返回多个结果。</li>
-<li>Connection getConnection()：获取生成此 <code>Statement</code> 对象的 <code>Connection</code> 对象。</li>
-<li>void close() ：立即释放此 <code>Statement</code> 对象的数据库和 JDBC 资源，而不是等待该对象自动关闭时发生此操作。</li>
-<li>int executeUpdate(String sql)执行给定 SQL 语句，该语句可能为 <code>INSERT</code>、<code>UPDATE</code>或 <code>DELETE</code> 语句，或者不返回任何内容的 SQL 语句（如 SQL DDL 语句）。</li>
-</ul>
-</li>
-<li><p>java.sql.Connetion：与特定数据库的连接（会话）。在连接上下文中执行 SQL 语句并返回结果。</p>
-<ul>
-<li>createStatement创建一个Statement对象，该对象将生成具有给定类型和并发性的 <code>ResultSet</code> 对象。</li>
-<li>void close():关闭;</li>
-<li>prepareStatement(String sql,String[] columnNames):   创建一个能返回由给定数组指定的自动生成键的默认 <code>PreparedStatement</code> 对象。</li>
-<li>setAutoCommit(boolean autoCommit)：将此链接的自动提交模式设置为给定状态。</li>
-</ul>
-</li>
-<li><p>java.util.Properties：<code>Properties</code> 类表示了一个持久的属性集。<code>Properties</code> 可保存在流中或从流中加载。(他的子类Provider里面有一个put(Object key,Object value) 设置可以的属性，使其具有指定的value）</p>
-<ul>
-<li>getProperty(String key): 用指定的键在此属性列表中搜索属性。</li>
-<li>void  load(InputStream inStream)从输入流中读取属性列表（键和元素对）</li>
-<li>Properties() 构造方法创建一个默认值的空属性列表。</li>
-</ul>
-</li>
-<li><p>java.sql.Driver：每个驱动程序类必须实现的接口。Java SQL 框架允许多个数据库驱动程序。</p>
-<ul>
-<li>Connection connect(String url,Properties info)：试图创建一个到给定 URL 的数据库连接。</li>
-</ul>
-</li>
-<li><p>java.sql.ResultSet：表示数据库结果集的数据表，通常通过执行查询数据库的语句生成。</p>
-<ul>
-<li>getDate(int columnIndex)传递列的索引。</li>
-</ul>
-</li>
-<li><p>java.sql.PreparedStatement：标识预编译的SQL语句的对象。</p>
-</li>
-<li><p>java.sql.ResultSetMetaData：可用于获取关于 <code>ResultSet</code> 对象中列的类型和属性信息的对象。（调用ResultSet的getMetaData()方法： 获取此 <code>ResultSet</code> 对象的列的编号、类型和属性。）</p>
-<ul>
-<li>getColumnCount()：SQL语句包含那些列</li>
-<li>getColumnLabel(int column)：获取指定的列的别名，其中索引从1开始</li>
-</ul>
-</li>
-<li><p>java.sql.DatabaseMetaData: 关于数据库的综合信息。</p>
-</li>
-</ul>
-<p><strong>面向对象方式编写JDBC程序</strong></p>
-<p>问题1：当运行代码的时候数据库并没有添加成功。然后重新观察在连接居然无法连接成功，注释掉添加的代码后还是无法连接到数据库。改着改着只剩下Run On Server了无法在Junit Test上运行而错误也成为了没有运行的方法。但是原来是找不到文件。然后换了一个文件夹重新操作复制粘贴，结果成功了，成功了！！！<br>进过不断的踩坑发现当我的jdbc文件放错路径且当在Url后面加入一串?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC即可。</p>
-<p>问题2:当我在同一个包里面设置了另外一个工具类，类里实现连接数据库的方法，和关闭连接的方法。但是会出现空指针异常，问题出在文件反射，通过一些查询并未解决。然后直接在本类中操作。虽然有报异常但是可以实现查询操作。</p>
-<p>问题3:为什么我进行成功后任然会出现空指针异常，但是确实对数据库进行了操作这不太合逻辑啊。或许是对异常的理解出现偏差，还有正常方法不要使用@Test</p>
-<p>问题4:一个不算问题的问题，在连接数据库的时候要十分注意自己的拼写问题，否则整个代码可能和教程没有任何误差但是却无法找到对应数据库的信息。还有不要漏掉@Test否则连接不到数据库。（不过这种情况可能只有掉坑里才会有印象深刻吧。）</p>
-<p>问题5：在反射时出现问题暂不明白问题根源，开始是使用的newInstance()有问题，但是百度后使用getDeclaredConstructor().newInstance()，仍然出现一样的结果，抛出异常显示的是我在百度copy的ReflectionUtils的问题。暂时跳过此问题继续学习。</p>
-<p>问题6：</p>
 
       
 
@@ -486,7 +391,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/08/JDBC/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/19/File类基本操作/">展开全文 >></a>
         </p>
       
 
@@ -516,6 +421,902 @@
 
 
   
+    <article id="post-字节字符输出流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字节字符输出流"><a href="#字节字符输出流" class="headerlink" title="字节字符输出流"></a>字节字符输出流</h1><h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><p>输出单个字符数据：public abstract void write(int b) </p>
+<p>输出一组字节数据：public void write(byte[] b) </p>
+<p>输出部分字节数据：public void write(byte[] b,int off,int len)</p>
+<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><p>读取单个字节数据：public abstract int read(int b) </p>
+<p>读取一组字节数据：public int read(byte[] b) </p>
+<p>读取部分字节数据：public int read(byte[] b,int off,int len)</p>
+<p>从文件读取一定使用FileInputStream</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/字节字符输出流/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-字符流和字节流基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符流和字节流"><a href="#字符流和字节流" class="headerlink" title="字符流和字节流"></a>字符流和字节流</h1><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>在使用OutputStream类输出的时候如果现在没有使用close()方法关闭输出流，内容也可以存入，但使用Writer时候没有关闭输出则无法存入，因为Writer使用到了缓冲区。当使用close()会有强制刷新缓冲区的情况，所以会将内容进行输出，如果不关闭需要使用flush()强制刷新。使用缓冲区的字节流更适合中文的处理。</p>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p>子类<strong>InputStreamReader和OutputStreamWriter</strong></p>
+<p>通过类的继承结果与构造方法可以发现，转换流就是将字节流通过向上转型转化为字符流对象。</p>
+<h2 id="内存操作流"><a href="#内存操作流" class="headerlink" title="内存操作流"></a>内存操作流</h2><p>ByteArrayInputStream构造：public ByteArrayInputStream(byte[] buf)</p>
+<p>ByteArrayOutputStream构造：public ByteArrayOutputStream();</p>
+<p>获取数据：public byte[] toByteArray();</p>
+<p>使用字符串的形式来获取：public String toString();</p>
+<h2 id="管道流"><a href="#管道流" class="headerlink" title="管道流"></a>管道流</h2><p>实现2个线程之间的IO处理操作</p>
+<p>字节管道流：PipedOutputStream，PipedInputStream</p>
+<p>字符管道流：PipedWriter、PipedReader</p>
+<h2 id="RandomAccessFile"><a href="#RandomAccessFile" class="headerlink" title="RandomAccessFile"></a>RandomAccessFile</h2><p>读取数据：</p>
+<ul>
+<li>向下找：public int skipBytes(int n)throws IOException</li>
+<li>向回找：public void seek(long pos) throws IOException</li>
+</ul>
+<h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><p>PrintStream和PrintWriter可以完成流的使有操作且更加方便</p>
+<h2 id="System"><a href="#System" class="headerlink" title="System"></a>System</h2><ul>
+<li>标准输出(显示器)：public static final PrintStream out；</li>
+<li>错误输出：public static final PrintStream err;</li>
+<li>标准输入(键盘)：public static final PrintStream ；</li>
+</ul>
+<h2 id="BufferedReader缓冲输入流"><a href="#BufferedReader缓冲输入流" class="headerlink" title="BufferedReader缓冲输入流"></a>BufferedReader缓冲输入流</h2><p>读取一行数据：public String readLine() throws IOException</p>
+<h2 id="Scanner扫描流"><a href="#Scanner扫描流" class="headerlink" title="Scanner扫描流"></a>Scanner扫描流</h2><p>主要目的是为了解决输入流的访问问题，可以理解为BufferedReader的替代功能类</p>
+<ul>
+<li>构造：public Scanner(InputStream source)</li>
+<li>判断是否有数据：public boolean hasNext()</li>
+<li>取出数据：public String next()</li>
+<li>设置分隔符：public Scanner useDelimiter(String pattren)</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/字符流和字节流基本操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-正则表达" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="正则表达"><a href="#正则表达" class="headerlink" title="正则表达"></a>正则表达</h2><p>在java.util.regex中有开发包，包里提供一个Pattern类提供了正则表达的操作</p>
+<ol>
+<li>【数量：单个】字符匹配<ol>
+<li>任意字符：表示由任意字符组成：</li>
+<li>\：匹配 ”\“；</li>
+<li>\n：匹配换行；</li>
+<li>\t：匹配制表符；</li>
+</ol>
+</li>
+<li>【数量：单个】字符集(可以从中任选一个字符<ol>
+<li>【abc】：表示可能是字母abc中任意一个；</li>
+<li>【^abc】：表示不是由字母abc中任意一个；</li>
+<li>【a-zA-Z】：表示由一个任意字母所组成，不区分大小写</li>
+<li>【0-9】：表示一位数字所组成</li>
+</ol>
+</li>
+<li>【数量：单个】简化字符集：<ol>
+<li>.:表示任意一个字符</li>
+<li>\d:等价于“[0-9]范围</li>
+<li>\D：等价于[ ^0-9]范围</li>
+<li>\s：匹配任意一位空格、换行、制表符</li>
+<li>\S：匹配任意的非空格数据</li>
+<li>\w：匹配字母、数字、下划线，等价于【a-zA-Z_0-9】</li>
+<li>\W: 匹配非字母、数字、下划线</li>
+</ol>
+</li>
+<li>边界匹配：<ol>
+<li>^:匹配边界开始：</li>
+<li>$：匹配边界结束</li>
+</ol>
+</li>
+<li>数量表示，默认情况下只有添加上了数量单位才可以匹配多位字符<ol>
+<li>表达式？：该正则可以出现0次或1次</li>
+<li>表达式*： 该正则可以出现0次、1次或多次</li>
+<li>表达式+：该正则可以出现1次或多次</li>
+<li>表达式{n}：表达式的长度正好为n次</li>
+<li>表达式{n,}：表达式的长度为n次以上</li>
+<li>表达式{n,m}：表达式的长度正好为n~m次</li>
+</ol>
+</li>
+<li>逻辑表达式：可以连接多个正则：<ol>
+<li>表示式X表达式Y：X表达式</li>
+<li>表达式X|表达式Y：有一个表达式满足即可</li>
+<li>(表达式):为表达式设置一个整体描述，可以为整体描述设置数量单位</li>
+</ol>
+</li>
+</ol>
+<p>String对正则表达式的操作支持</p>
+<ol>
+<li>public boolean matches(Sting regex)：将指定字符串进行正则判断</li>
+<li>public String replaceAll(String regex,String replacement)替换全部</li>
+<li>public String replaceFirst(String regex,String replacement)替换首个</li>
+<li>public String[] spilt(String regex)正则拆分</li>
+<li>public String[] split(String regex,int limit)正则拆分</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/正则表达/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><p><strong>链表的本质是一个动态对象数组</strong></p>
+<p>数组有一个致命缺点是长度固定，得先定义数组长度才可使用。而链表可以进行灵活的数据保存。</p>
+<p>在实践操作的时候会出现随时修改结构的过程，传统对象数组的开发操作依赖于角标，而且不易于动态维护。对于固定的数据可以用对象数组，但是对于需要随时添加的数组需要用到链表。</p>
+<p>可以避免数组的频繁修改造成的麻烦。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/链表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-基础类库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基础类库"><a href="#基础类库" class="headerlink" title="基础类库"></a>基础类库</h1><p>UUID生成一个随机字符串</p>
+<p>Optional在引用中判断是否为空，相关操作</p>
+<ol>
+<li>返回空数据：public static <t> Optional <t> empty();</t></t></li>
+<li>获取数据：public T get();</li>
+<li>保存数据，但是不允许出现null:public static <t> Optional <t> ofNullable(T value)</t></t></li>
+<li>空的时候返回其他数据类型：public T orElse(T other)</li>
+</ol>
+<p>ThreadLocal类主要解决了核心资源与多线程并发访问的处理情况。</p>
+<ol>
+<li>构造方法：public ThreadLocal()</li>
+<li>设置数据：public void set(T value)</li>
+<li>取出数据：public T get()</li>
+<li>删除数据：public void remove()</li>
+</ol>
+<p>TimerTask实现定时任务，它的子类为MyTask</p>
+<p>Timer类先定时任务</p>
+<ol>
+<li>任务启动：public void schedule(TimerTask task,long delay)、</li>
+<li>间隔触发：public void scheduleAtFixedRate(Timer task,long delay,long period)</li>
+</ol>
+<p>Base64 :加密与解密</p>
+<ol>
+<li>public  Encoder getEncoder()加密 后加上encode(data)</li>
+<li>public  Decoder getDecoder()解密 后加decode(data)</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/基础类库/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-监听器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h1><p>监听器是一个接口，由我们实现内容，需要注册如在按钮上注册，挡土墙只不过的方法，会在特殊事件发生时被调遣。</p>
+<p><strong>观察者</strong></p>
+<ul>
+<li>事件源<ul>
+<li>小偷</li>
+</ul>
+</li>
+<li>事件<ul>
+<li>偷东西</li>
+</ul>
+</li>
+<li>监听器<ul>
+<li>警察</li>
+<li>监听器中的方法：抓捕</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>JavaWeb中的监听器：</p>
+<ul>
+<li><p>事件源：三大域</p>
+<ul>
+<li><p>ServletContext</p>
+<ul>
+<li>生命周期监听：ServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。</li>
+</ul>
+<ul>
+<li><p>contextInitialized(ServletContextEvent)</p>
+</li>
+<li><p>contextDestroyed(ServletContextEvent)</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>属性监听：ServketContextAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用</p>
+<ul>
+<li>attributeAdded(ServletContextAttributeEvent scab)  <ul>
+<li>attributeReplaced(ServletContextAttributeEvent scab)</li>
+</ul>
+</li>
+<li>attributeRemoved(ServletContextAttributeEvent scab)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>HttpSession</p>
+<ul>
+<li>生命周期监听：HttpServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。<ul>
+<li>void sessionCreated(HttpSessionEvent )</li>
+<li>void sessionDestroyed(HttpSessionEvent)</li>
+</ul>
+</li>
+<li>属性监听：HttpServletContextAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用<ul>
+<li>attributeAdded(HttpSeissionBindingEvent event)  </li>
+<li>attributeReplaced(HttpSeissionBindingEvent event)</li>
+<li>attributeRemoved(HttpSeissionBindingEvent event)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ServletRequest:</p>
+<ul>
+<li>生命周期监听：ServletRequestListener,它有两个方法，一个在出生时调用，一个在死亡时调用。<ul>
+<li>void requestInitialized(ServletRequestEvent)</li>
+<li>void requestDestroyed(ServletRequestEvent)</li>
+</ul>
+</li>
+<li>属性监听：ServketRequesttAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用<ul>
+<li>attributeAdded(ServletRequestAttributeEvent scab)  </li>
+<li>attributeReplaced(ServletRequestAttributeEvent scab)</li>
+<li>attributeRemoved(ServletRequestAttributeEvent scab)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>事件对象</p>
+<ul>
+<li>ServletContextEvent:ServletContext getServletContext()</li>
+<li>HttpSessionEvent:HttpSession getSession()</li>
+<li>ServletRequest:<ul>
+<li>ServletContext getServletContext()</li>
+<li>ServletRequest getServletRequest()</li>
+</ul>
+</li>
+<li>ServletContextAttributeEvent()<ul>
+<li>ServletContext getServletContext()</li>
+<li>String getName()</li>
+<li>String getValue()</li>
+</ul>
+</li>
+<li>HttpSessionBindingEvent:略</li>
+<li>ServletRequestAttributeEvent:略</li>
+</ul>
+<p>感知监听(都与HttpSession相关)</p>
+<ul>
+<li>它用来添加到JavaBean上，而不是添加到三大域上！</li>
+<li>这两个监听器都不需要在web.xml中注册</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/监听器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JSP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><h3 id="JSP基础"><a href="#JSP基础" class="headerlink" title="JSP基础"></a>JSP基础</h3><p><strong>jsp的作用</strong></p>
+<ul>
+<li>servlet–优点：动态资源，可以编程。缺点：不适合html响应头需要大量response.getWriter().print(“html”)等。</li>
+<li>html–优点：不是为输出html标签发愁。缺点：html是静态页面，不能包含动态信息。</li>
+<li>JSP–优点：在原有的html的基础上添加java脚本，构成jsp页面。</li>
+</ul>
+<p><strong>JSP和Servlet分工</strong></p>
+<p>JSP:作为请求发起页面，如表单超链接，作为结束页面，列如显示数据。</p>
+<p>Servlet：作为请求中处理数据的环节。</p>
+<p><strong>JSP组成</strong></p>
+<p>jsp=html+java脚本+jsp标签</p>
+<p>jsp中无需船机即可使勇的对象由9个，称为9大内置对象。</p>
+<p>3种java脚本：&lt;%…%&gt;java代码片段&lt;%=…%&gt;java表达式，用于输出(常用)用于输出一条表达式或变量的结果，&lt;%!…%&gt;声明，用来船机类的朝阳北路和成员方法。</p>
+<p><strong>JSP原理</strong></p>
+<ul>
+<li>JSP是一种特殊的Servlet<ul>
+<li>当JSP页面第次被访问时，服务器会吧jsp编译为Java文件然后再把java编译为.class然后创建各类对象，最后调用service()方法，第二次请求jsp时，直接调用service()方法</li>
+<li>在tomcat的work目录下可以找到jsp对应的.java源代码</li>
+</ul>
+</li>
+</ul>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><ol>
+<li><p>Http协议与Cookie</p>
+<ul>
+<li>先由服务器保存Cookie到浏览器，再下次浏览器QQ服务器把上次请求得到的Cookie再返还给服务器。由服务器创建保存到客户端一个键值对！服务器保存响应头，当浏览器请求服务器时会吧服务器保存的Cookie随请求发送给服务器，浏览器归还Cookie的请求头，<ul>
+<li>一个Cookie最大4kb</li>
+<li>一个服务器最多向1个浏览器保存20个Cookie</li>
+<li>一个浏览器最多保存300Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Cookie的用途</p>
+<ul>
+<li>服务器使用Cookie来跟踪客户端状态</li>
+<li>保存购物车（购物车中的商品不能使用request保存，因为它是一个用户向服务器发送多个请求信息）</li>
+<li>显示上交登录名</li>
+</ul>
+</li>
+<li>JavaWeb中使用Cookie<ul>
+<li>原始方式(了解)<ul>
+<li>使用response发送Set-Cookie响应头</li>
+<li>使用request获取Cookie请求头</li>
+</ul>
+</li>
+<li>便捷方式<ul>
+<li>使用response.addCookie()方法向浏览器保存Cookie</li>
+<li>使用request.getCookie()方法获取浏览器归还的Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cookie详解<ul>
+<li>Cookie不只有name和value两个属性</li>
+<li>Cookie的maxAge：Cookie的最大生命即Cookie课保存的最大时长。以秒为单位。列如：cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到浏览器60s<ul>
+<li>maxAge&gt;0：浏览器会把Cookie保存到客户机硬盘上，有效时长为maxAge的值决定。</li>
+<li>maxAge&lt;0：Cookie只会在浏览器这个内存中存在，用户关闭浏览器是，浏览器进程结束，Cookie死亡</li>
+<li>maxAge=0：浏览器会马上删除这个Cookie！</li>
+</ul>
+</li>
+<li>Cookie的path<ul>
+<li>Cookie的path 并不是设置增Cookie在客户端的保存路径</li>
+<li>Cookie的path由服务器创建Cookie时设置</li>
+<li>当浏览器访问服务器的路径，如果包含某个Cookie的路径，那么就会归还这个Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="HttpSession"><a href="#HttpSession" class="headerlink" title="HttpSession"></a>HttpSession</h1><ol>
+<li><p>HttpSession概述</p>
+<ul>
+<li><p>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端</p>
+</li>
+<li><p>HttpSession是Servlet三大域对象之一(request,session,application(ServletContext))，所以它也有setAttribute()，getAttribute(),removeAttribute()方法</p>
+</li>
+<li><p>HttpSession底层以来Cookie，或是URL重写</p>
+</li>
+</ul>
+</li>
+<li><p>HtppSession的作用</p>
+</li>
+</ol>
+<ul>
+<li><p>会话范围：会话范围是某个用户首次访问服务器开始，到用户关闭浏览器结束</p>
+<ul>
+<li><p>服务器会为每个客户端一个session独享，session就好比客户在服务器端的账户，他们被服务器保存在一个Map中Map被称之为session缓冲：</p>
+<ul>
+<li>Servlet中得到session对象：HttpSession session=request.getSession()</li>
+<li>JSP中得到session对象：session是jsp内置对象之下，不用创建就可以直接使用，</li>
+</ul>
+</li>
+<li><p>Session域相关方法：set，get，remove</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>HttpSession原理(理解)</p>
+<ul>
+<li>request.getSession()方法：如果Session不存在则创建并保存到Cookie。如果sessionId存在通过sessionId查找session对象，如果没有查到，创建并保存。</li>
+<li>如果创建了新的session，浏览器会得到一个包含了sessionId的Cookie这个Cookie的生命为-1。</li>
+<li>request.getSession(false)如果session缓冲存中cookie不存在session，那么返回null，而不创建session</li>
+</ul>
+</li>
+<li><p>HttpSsession其他方法；</p>
+<ul>
+<li>String getId();获取sessionId</li>
+<li>int getMaxInactiveInterval():获取session可以的最大不活动时间</li>
+<li>void invalidate():让session失效</li>
+<li>boolean isNew():查看session是否为新。</li>
+</ul>
+</li>
+<li><p>配置session最大不活动时间</p>
+<p>​    <session-config> <session-timeout>1</session-timeout></session-config></p>
+</li>
+<li><p>URL重写</p>
+<ul>
+<li>session依赖Cookie，目的是为了让客户端发出请求时归还sessionId，从而找到session对象。</li>
+<li>如果客户端禁用了Cookie，那么就无法得到sessionId，那么sessionId就无用了</li>
+<li>可以让URL重写来代替Cookie<ul>
+<li>让网站的所有超链接，表单都添加一个sessionId，从而找到session对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="JSP的指令"><a href="#JSP的指令" class="headerlink" title="JSP的指令"></a>JSP的指令</h2><p>page指令是最为常用的指令，也是属性最多的属性！Page指令没有必须属性，都是可选属性。列如&lt; %@page%&gt; 在JSP中指令可以重复出现。 </p>
+<ul>
+<li><p>page-指令</p>
+<ul>
+<li>pageEncoding:pageEncoding它指定当前jsp页面的编码。服务器要保jsp编译成.java时需要pageEncoding，</li>
+<li>contentType：它表示添加一个响应头contentType！等同于response.setContentType(“text/html;charset=utf-8”)</li>
+<li>import：导包</li>
+<li>errorPage：当前页面如果抛出异常，要转发到哪个页面由errorPage来指定</li>
+<li>isErrorPage：他指定当前页面是否为处理错误的页面，这个页面会设置状态码为500，而且这个页面可以使用9大内存对象</li>
+<li>在web.xml中配置</li>
+</ul>
+<p><error-page></error-page></p>
+<p>​    <error-code>404</error-code></p>
+<p>​    <location>/error404.jsp</location></p>
+<p></p>
+<p><error-page></error-page></p>
+<p>​    <exception-type>java.lang.RuntimeException</exception-type></p>
+<p>​    <location>/error.jsp</location></p>
+<p></p>
+<ul>
+<li>autoFlush：指定jsp的输出柳缓冲区满时，是否自动刷新！默认为true，如果false，那么在缓冲区满时抛出异常。</li>
+<li>buffer：指定缓冲区大小，默认为8kb，通常不需要修改！</li>
+<li>isELIgnored：是否忽略el表达式，默认值为false，不忽略</li>
+<li>基本没用熟悉<ul>
+<li>language：指定当前jsp编译后的语言类型，默认为java</li>
+<li>info：信息</li>
+<li>isTreadSafe：当前的jsp是否支持并发访问</li>
+<li>session:默认为true，当前页面是否支持session如果为false，那么当前页面就没有session这个内置对象。</li>
+<li>extends：让jsp审查servlet去继承指定属性的类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>9大内置对象：</p>
+<ul>
+<li>out(JspWriter)：等同于response.getWriter()用来向客户端发生文本数据。输出流，用来向客户端响应</li>
+<li>config（ServletConfig)：对应ServletConfig</li>
+<li>page(当前JSP的真身类型)：当前JSP页面的“this”，即当前对象。它的引用类型是Object，真身中有如下代码：Object page=this；</li>
+<li>pageContext(PageContext)：页面上下文对象，他是最后一个没讲的域对象</li>
+<li>exception(Throwable)：只有在错误页面中可以使用这个对象</li>
+<li>request(HttpServletRequest)：即HttpServletRequest类的对象</li>
+<li>response(HttpServletResponse)：即HttpServletResponse类的对象</li>
+<li>application(ServletContext)：即ServletContext类对象</li>
+<li>session(HttpSession)：即HttpSession类的对象，不是每个JSP页面中都能可以使用，如果在某个JSP页面中设置&lt;%@page session=”false”%&gt;,说明这个页面不能使用session</li>
+</ul>
+<p>在内置对中极少使用的有：config，page，exception</p>
+<p>有两个对象不是每个JSP页面都能使用：exception，session</p>
+<p>有之前学过的对象：out，request，response，application，session，config，</p>
+<ul>
+<li>pageContext<ul>
+<li>一个顶9个！</li>
+<li>Servlet中有3大域，而JSP中有4大域，他是最后一个域对象<ul>
+<li>ServletContext：整个应用程序</li>
+<li>session：整个会话(一个会话只有一个用户)</li>
+<li>request：一个请求链</li>
+<li>pageContext：一个jsp页面！这个域是在当前jsp页面和当前jsp页面中十一点表情之间共享数据！是域对象还能代理其他域！比如：pageContext.setAttribute(“xxx”,”XXX”,PageContext.SESSION_SCOPE);</li>
+<li>pageContext：还可以全域查找第一次是在page，request，session，application范围查找名称为那么的数据，如果找到就停止查找。这说明在这个范围内有相同名称的数据那么page范围的优先级最高。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>include-静态包含</p>
+<ul>
+<li>与RequestDispatcher的include()方法的功能相似！</li>
+<li>&lt; %@include%&gt;它是在jsp编译成java1文件时完成的！他们共同生成的一个java文件，然后再生成一个class</li>
+<li>RequestDispatcher的include()是一个方法，包含和被包含的是两个servlet，即两个.class！他们只是把相应的内容在运行时合并了！</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>taglib-导入标签库</p>
+<ul>
+<li>两个属性prefix：指定表情库在本页面中的前缀！由我们自己来起名称！</li>
+</ul>
+</li>
+<li><p>uri：指定变迁库的位置</p>
+<ul>
+<li>&lt;%@taglib prefix=”s” uri=”/struts-tags”%&gt;&lt; s:text&gt;</li>
+</ul>
+</li>
+<li><p>JSP动作标签</p>
+<p>这些JSP的动作标签，与html提供的标签有本质的区别这些标签是由tomcat来解释执行，html由浏览器执行</p>
+<ul>
+<li>&lt; jsp:forward&gt;转发：与RequestDispatcher的forward方法是一样的，一个是在Servlet中使用，一个是在jsp中使用</li>
+<li>&lt; jsp:include&gt;包含：它与RequestDispatcher的include方法是一样的，一个是在Servlet中使用，一个是在jsp中使用</li>
+<li>&lt; %@include&gt;和&lt; jsp:include&gt;有什么不同<ul>
+<li>&lt; jsp:include&gt;最后变成了一个方法调用，而&lt; %@include&gt;是直接写在当中</li>
+</ul>
+</li>
+<li>&lt; jsp:param&gt;：它用来作为forward和include的子标签！用来给转发或包含的页面传递参数！</li>
+</ul>
+</li>
+<li><p>JSP在web.xml中的配置</p>
+</li>
+</ul>
+<h2 id="JavaBean规范"><a href="#JavaBean规范" class="headerlink" title="JavaBean规范"></a>JavaBean规范</h2><ol>
+<li>必须要有默认构造器</li>
+<li>提供get/set方法，如果只有get方法，那么这个属性是只读属性</li>
+<li><p>属性：有get/set方法的成员，还可以没有成员，只有get/set方法。属性名称有get/set方法来决定，而不是成员名称。</p>
+</li>
+<li><p>方法名称满足一定的规范，那么它就是属性！boolean类型的属性，它的读方法可以是is开头，也可以是get开头！</p>
+</li>
+</ol>
+<p><strong>内省获取BeanInfo</strong></p>
+<p>通过java.beans.Introspector的getBeanInfo()方法来获取java.beans.BeanInfo实例。</p>
+<p>通过内省类–&gt;Bean信息–&gt;属性描述符–&gt;属性的get/set对应的Method–&gt;可以反射</p>
+<p>通过工具类commons-beanutils来完成</p>
+<p><strong>JSP中与javabean相关的标签</strong></p>
+<p>&lt; jsp:useBean&gt;–&gt;创建或查询bean—&lt; jsp:useBean id=”user1” class=”cn.itcast.domain.User” scope=”page”/&gt;表示在session域中查找名为user1的bean，如果不存在。就创建</p>
+<p>&lt; jsp:setProperty&gt;—–&lt; jsp:setProperty property=”username” name=”user1” value=”admin”&gt;设置user1的增javabean的username属性值为admin和&lt; jsp:getProperty&gt;—-&lt;jsp:getProperty property=”username” name=”user1”/&gt;获取名为user1的javabean的名为username的属性值</p>
+<h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><ol>
+<li><p>EL表达式是JSP内置表达语言</p>
+<p>从jsp2.0开始不在使用java脚本，而是使用二楼标的是和动态标签来代替java脚本！EL代替是的&lt; %=%&gt;也就是EL只能做输出。</p>
+</li>
+<li><p>EL表达式来读取四大域</p>
+<p>${xxx},全域查找pageContext_XXX pageContext_XXX request_XXX session_XXX application_XXX获取指定域属性</p>
+</li>
+<li><p>javaBean导航</p>
+</li>
+<li></li>
+<li><p>一共11个内置对象</p>
+<ul>
+<li>pageScope</li>
+<li>requestScope</li>
+<li>sessionScope</li>
+<li>applicationScope</li>
+<li>param：是一个Map，key为参数名，value是参数值，适用于单值参数</li>
+<li>paramValues：键是字符串，值是字符串数组</li>
+<li>header：对应请求头，它是一个Map，其中key表示参数名，value是参数值，适用于多值的参数</li>
+<li>headerValues：对应参数，它是一个Map，其中key表示头名称，value是多个参数值，适用于多值请求头</li>
+<li>cookie：Map&lt;String,Cookie&gt;类型，其中key是cookie的name，value是cookie对象</li>
+<li>pageContext：它pageContext类型!${pageContext.request.contextPath}</li>
+</ul>
+<h3 id="EL函数库-JSTL提供"><a href="#EL函数库-JSTL提供" class="headerlink" title="EL函数库(JSTL提供)"></a>EL函数库(JSTL提供)</h3><p>&lt;%@ taglib prefix=”fn” uri=”<a href="http://java.sun.com/jsp/jstl/functions&quot;" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/functions&quot;</a> %&gt;导入库</p>
+<ol>
+<li><p>函数库介绍</p>
+<ul>
+<li>String toUpperCase(String input)</li>
+<li>String toLowerCase(String input)</li>
+<li>int indexOf(String inout,String substring)</li>
+<li>boolean contains(String input,String substring)</li>
+<li>boolean containsIgnoreCase(String input,String substring)</li>
+<li>boolean startsWith(String input,String substring)：是否以小串为前缀</li>
+<li>boolean endWith(String input,String substring)：是否以小串为后缀</li>
+<li>String substring(String input,int beginIndex.int endIndex)：截取子串</li>
+<li>String substringAfter(String input,String substring)：</li>
+<li>String  substringBefore(String input,String substring)</li>
+<li>String escapeXml(String input)把字符串的&gt;&lt;.。转义</li>
+<li>String trim(String input)：剔除空格</li>
+<li>String replace(String input,String substringBefore,String substringAfter)：</li>
+<li>String[] split(String input,String delimiters)：分割字符串</li>
+<li>int length(Object obj)</li>
+<li>String join(String array[],String separator)：联合字符串数组</li>
+</ul>
+</li>
+<li><p>自定义函数库</p>
+<p>bug未解决</p>
+</li>
+<li><p>JSTL标签库</p>
+<ol>
+<li><p>什么是JSTL：JSTL是apachedui1EL表达式的扩展</p>
+</li>
+<li><p>JSTL4大标签库：</p>
+<ul>
+<li><p>core:核心标签库，学习重点</p>
+<p>out和set，remove，url，if，choose，forEach</p>
+<p>&lt;c:out value=”${a}” default=”xxx” escapeXml=”false”&gt;</p>
+<p>&lt;c:set var=”a” value=”hello”/&gt;</p>
+<ol>
+<li><p>&lt;c:set var=”a” value=”hello” scope=”session”/&gt;scope是域可以选择</p>
+</li>
+<li><p>&lt;c:remove var=”a”&gt;删除所有与中该var的变量，如果指定域则只删除该域的变量</p>
+</li>
+<li>url：给value指定路径！它会在路径前面自动添加项目名。&lt;c:url value=”/index.jsp”/&gt; 可以给URL后面追加参数。子标签：&lt;c:param name =”username” value=”张三”/&gt;</li>
+</ol>
+<p>&lt;c:if test=”布尔类型”&gt;…&lt; /c:if&gt;java中的if，</p>
+<p>&lt; c:choose&gt;   &lt; c:when test=${score&gt;90}&gt;A级&lt; /c:when&gt;&lt; c:otherwise&gt;&lt; /c:otherwise&gt;</p>
+<p>&lt; c:forEach&gt; &lt; /c:forEach&gt;</p>
+<p>&lt; c:forEach var=”item” items=”${ns}” varStatus=”vs”&gt;&lt; /c:forEach&gt;</p>
+<p>vs.count:循环元素的个数。vs.index：循环元素的下标。vs.first：是否为第一个元素vs.last是否为最后一个元素，vs.current：当前元素</p>
+</li>
+<li><p>fmt：格式化标签库，学习对日期的格式化和数字的格式化</p>
+<p>&lt; fmt:dateFormatDate value=”${d}” pattren=”yyyy-MM-dd HH:mm:ss”&gt;value指定一个Date类型的变量</p>
+<p>&lt; fmt:formatNumber value=”” pattern=””&gt;</p>
+</li>
+<li><p>sql：过时</p>
+</li>
+<li><p>xml过时</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="自定义标签"><a href="#自定义标签" class="headerlink" title="自定义标签"></a>自定义标签</h2><p>SimpleTag接口的5个方法</p>
+<ul>
+<li>void doTag()：每次执行标签时调用此方法</li>
+<li>JspTag getParent()：返回父标签</li>
+<li>void setParent(JspTag)：设置父标签</li>
+<li>void setJspBody(JspFrament)：设置标签体</li>
+<li>void setJspContext(JspContext) ：设置jsp上下文对象，它儿子是PageContext</li>
+</ul>
+<p>标签体内容：</p>
+<ul>
+<li>empty：无标签体</li>
+<li>scriptless：只能是EL表达式，也可以是其他标签</li>
+<li>tagdependent：标签体内容不会被执行，而是直接赋值标签处理类。</li>
+</ul>
+<p>不在执行标签下面内容的标签：在标签处理类中的doTag()中使用SkipPageExcepion来结束！Tomcat会调用标签</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/19/JSP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 

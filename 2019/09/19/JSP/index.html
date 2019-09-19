@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://hulinjian.com">
-  <title>Archives | 分享</title>
+  <title>分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java学习笔记">
-<meta property="og:type" content="website">
+  <meta name="description" content="JSPJSP基础jsp的作用  servlet–优点：动态资源，可以编程。缺点：不适合html响应头需要大量response.getWriter().print(“html”)等。 html–优点：不是为输出html标签发愁。缺点：html是静态页面，不能包含动态信息。 JSP–优点：在原有的html的基础上添加java脚本，构成jsp页面。  JSP和Servlet分工 JSP:作为请求发起页面">
+<meta property="og:type" content="article">
 <meta property="og:title" content="分享">
-<meta property="og:url" content="http://hulinjian.com/archives/index.html">
+<meta property="og:url" content="http://hulinjian.com/2019/09/19/JSP/index.html">
 <meta property="og:site_name" content="分享">
-<meta property="og:description" content="Java学习笔记">
+<meta property="og:description" content="JSPJSP基础jsp的作用  servlet–优点：动态资源，可以编程。缺点：不适合html响应头需要大量response.getWriter().print(“html”)等。 html–优点：不是为输出html标签发愁。缺点：html是静态页面，不能包含动态信息。 JSP–优点：在原有的html的基础上添加java脚本，构成jsp页面。  JSP和Servlet分工 JSP:作为请求发起页面">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-19T12:59:53.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享">
-<meta name="twitter:description" content="Java学习笔记">
+<meta name="twitter:description" content="JSPJSP基础jsp的作用  servlet–优点：动态资源，可以编程。缺点：不适合html响应头需要大量response.getWriter().print(“html”)等。 html–优点：不是为输出html标签发愁。缺点：html是静态页面，不能包含动态信息。 JSP–优点：在原有的html的基础上添加java脚本，构成jsp页面。  JSP和Servlet分工 JSP:作为请求发起页面">
   
     <link rel="alternative" href="/atom.xml" title="分享" type="application/atom+xml">
   
@@ -153,235 +154,488 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JSP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><h3 id="JSP基础"><a href="#JSP基础" class="headerlink" title="JSP基础"></a>JSP基础</h3><p><strong>jsp的作用</strong></p>
+<ul>
+<li>servlet–优点：动态资源，可以编程。缺点：不适合html响应头需要大量response.getWriter().print(“html”)等。</li>
+<li>html–优点：不是为输出html标签发愁。缺点：html是静态页面，不能包含动态信息。</li>
+<li>JSP–优点：在原有的html的基础上添加java脚本，构成jsp页面。</li>
+</ul>
+<p><strong>JSP和Servlet分工</strong></p>
+<p>JSP:作为请求发起页面，如表单超链接，作为结束页面，列如显示数据。</p>
+<p>Servlet：作为请求中处理数据的环节。</p>
+<p><strong>JSP组成</strong></p>
+<p>jsp=html+java脚本+jsp标签</p>
+<p>jsp中无需船机即可使勇的对象由9个，称为9大内置对象。</p>
+<p>3种java脚本：&lt;%…%&gt;java代码片段&lt;%=…%&gt;java表达式，用于输出(常用)用于输出一条表达式或变量的结果，&lt;%!…%&gt;声明，用来船机类的朝阳北路和成员方法。</p>
+<p><strong>JSP原理</strong></p>
+<ul>
+<li>JSP是一种特殊的Servlet<ul>
+<li>当JSP页面第次被访问时，服务器会吧jsp编译为Java文件然后再把java编译为.class然后创建各类对象，最后调用service()方法，第二次请求jsp时，直接调用service()方法</li>
+<li>在tomcat的work目录下可以找到jsp对应的.java源代码</li>
+</ul>
+</li>
+</ul>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><ol>
+<li><p>Http协议与Cookie</p>
+<ul>
+<li>先由服务器保存Cookie到浏览器，再下次浏览器QQ服务器把上次请求得到的Cookie再返还给服务器。由服务器创建保存到客户端一个键值对！服务器保存响应头，当浏览器请求服务器时会吧服务器保存的Cookie随请求发送给服务器，浏览器归还Cookie的请求头，<ul>
+<li>一个Cookie最大4kb</li>
+<li>一个服务器最多向1个浏览器保存20个Cookie</li>
+<li>一个浏览器最多保存300Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Cookie的用途</p>
+<ul>
+<li>服务器使用Cookie来跟踪客户端状态</li>
+<li>保存购物车（购物车中的商品不能使用request保存，因为它是一个用户向服务器发送多个请求信息）</li>
+<li>显示上交登录名</li>
+</ul>
+</li>
+<li>JavaWeb中使用Cookie<ul>
+<li>原始方式(了解)<ul>
+<li>使用response发送Set-Cookie响应头</li>
+<li>使用request获取Cookie请求头</li>
+</ul>
+</li>
+<li>便捷方式<ul>
+<li>使用response.addCookie()方法向浏览器保存Cookie</li>
+<li>使用request.getCookie()方法获取浏览器归还的Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cookie详解<ul>
+<li>Cookie不只有name和value两个属性</li>
+<li>Cookie的maxAge：Cookie的最大生命即Cookie课保存的最大时长。以秒为单位。列如：cookie.setMaxAge(60)表示这个Cookie会被浏览器保存到浏览器60s<ul>
+<li>maxAge&gt;0：浏览器会把Cookie保存到客户机硬盘上，有效时长为maxAge的值决定。</li>
+<li>maxAge&lt;0：Cookie只会在浏览器这个内存中存在，用户关闭浏览器是，浏览器进程结束，Cookie死亡</li>
+<li>maxAge=0：浏览器会马上删除这个Cookie！</li>
+</ul>
+</li>
+<li>Cookie的path<ul>
+<li>Cookie的path 并不是设置增Cookie在客户端的保存路径</li>
+<li>Cookie的path由服务器创建Cookie时设置</li>
+<li>当浏览器访问服务器的路径，如果包含某个Cookie的路径，那么就会归还这个Cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="HttpSession"><a href="#HttpSession" class="headerlink" title="HttpSession"></a>HttpSession</h1><ol>
+<li><p>HttpSession概述</p>
+<ul>
+<li><p>HttpSession是由JavaWeb提供的，用来会话跟踪的类。session是服务器端对象，保存在服务器端</p>
+</li>
+<li><p>HttpSession是Servlet三大域对象之一(request,session,application(ServletContext))，所以它也有setAttribute()，getAttribute(),removeAttribute()方法</p>
+</li>
+<li><p>HttpSession底层以来Cookie，或是URL重写</p>
+</li>
+</ul>
+</li>
+<li><p>HtppSession的作用</p>
+</li>
+</ol>
+<ul>
+<li><p>会话范围：会话范围是某个用户首次访问服务器开始，到用户关闭浏览器结束</p>
+<ul>
+<li><p>服务器会为每个客户端一个session独享，session就好比客户在服务器端的账户，他们被服务器保存在一个Map中Map被称之为session缓冲：</p>
+<ul>
+<li>Servlet中得到session对象：HttpSession session=request.getSession()</li>
+<li>JSP中得到session对象：session是jsp内置对象之下，不用创建就可以直接使用，</li>
+</ul>
+</li>
+<li><p>Session域相关方法：set，get，remove</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>HttpSession原理(理解)</p>
+<ul>
+<li>request.getSession()方法：如果Session不存在则创建并保存到Cookie。如果sessionId存在通过sessionId查找session对象，如果没有查到，创建并保存。</li>
+<li>如果创建了新的session，浏览器会得到一个包含了sessionId的Cookie这个Cookie的生命为-1。</li>
+<li>request.getSession(false)如果session缓冲存中cookie不存在session，那么返回null，而不创建session</li>
+</ul>
+</li>
+<li><p>HttpSsession其他方法；</p>
+<ul>
+<li>String getId();获取sessionId</li>
+<li>int getMaxInactiveInterval():获取session可以的最大不活动时间</li>
+<li>void invalidate():让session失效</li>
+<li>boolean isNew():查看session是否为新。</li>
+</ul>
+</li>
+<li><p>配置session最大不活动时间</p>
+<p>​    <session-config> <session-timeout>1</session-timeout></session-config></p>
+</li>
+<li><p>URL重写</p>
+<ul>
+<li>session依赖Cookie，目的是为了让客户端发出请求时归还sessionId，从而找到session对象。</li>
+<li>如果客户端禁用了Cookie，那么就无法得到sessionId，那么sessionId就无用了</li>
+<li>可以让URL重写来代替Cookie<ul>
+<li>让网站的所有超链接，表单都添加一个sessionId，从而找到session对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="JSP的指令"><a href="#JSP的指令" class="headerlink" title="JSP的指令"></a>JSP的指令</h2><p>page指令是最为常用的指令，也是属性最多的属性！Page指令没有必须属性，都是可选属性。列如&lt; %@page%&gt; 在JSP中指令可以重复出现。 </p>
+<ul>
+<li><p>page-指令</p>
+<ul>
+<li>pageEncoding:pageEncoding它指定当前jsp页面的编码。服务器要保jsp编译成.java时需要pageEncoding，</li>
+<li>contentType：它表示添加一个响应头contentType！等同于response.setContentType(“text/html;charset=utf-8”)</li>
+<li>import：导包</li>
+<li>errorPage：当前页面如果抛出异常，要转发到哪个页面由errorPage来指定</li>
+<li>isErrorPage：他指定当前页面是否为处理错误的页面，这个页面会设置状态码为500，而且这个页面可以使用9大内存对象</li>
+<li>在web.xml中配置</li>
+</ul>
+<p><error-page></error-page></p>
+<p>​    <error-code>404</error-code></p>
+<p>​    <location>/error404.jsp</location></p>
+<p></p>
+<p><error-page></error-page></p>
+<p>​    <exception-type>java.lang.RuntimeException</exception-type></p>
+<p>​    <location>/error.jsp</location></p>
+<p></p>
+<ul>
+<li>autoFlush：指定jsp的输出柳缓冲区满时，是否自动刷新！默认为true，如果false，那么在缓冲区满时抛出异常。</li>
+<li>buffer：指定缓冲区大小，默认为8kb，通常不需要修改！</li>
+<li>isELIgnored：是否忽略el表达式，默认值为false，不忽略</li>
+<li>基本没用熟悉<ul>
+<li>language：指定当前jsp编译后的语言类型，默认为java</li>
+<li>info：信息</li>
+<li>isTreadSafe：当前的jsp是否支持并发访问</li>
+<li>session:默认为true，当前页面是否支持session如果为false，那么当前页面就没有session这个内置对象。</li>
+<li>extends：让jsp审查servlet去继承指定属性的类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>9大内置对象：</p>
+<ul>
+<li>out(JspWriter)：等同于response.getWriter()用来向客户端发生文本数据。输出流，用来向客户端响应</li>
+<li>config（ServletConfig)：对应ServletConfig</li>
+<li>page(当前JSP的真身类型)：当前JSP页面的“this”，即当前对象。它的引用类型是Object，真身中有如下代码：Object page=this；</li>
+<li>pageContext(PageContext)：页面上下文对象，他是最后一个没讲的域对象</li>
+<li>exception(Throwable)：只有在错误页面中可以使用这个对象</li>
+<li>request(HttpServletRequest)：即HttpServletRequest类的对象</li>
+<li>response(HttpServletResponse)：即HttpServletResponse类的对象</li>
+<li>application(ServletContext)：即ServletContext类对象</li>
+<li>session(HttpSession)：即HttpSession类的对象，不是每个JSP页面中都能可以使用，如果在某个JSP页面中设置&lt;%@page session=”false”%&gt;,说明这个页面不能使用session</li>
+</ul>
+<p>在内置对中极少使用的有：config，page，exception</p>
+<p>有两个对象不是每个JSP页面都能使用：exception，session</p>
+<p>有之前学过的对象：out，request，response，application，session，config，</p>
+<ul>
+<li>pageContext<ul>
+<li>一个顶9个！</li>
+<li>Servlet中有3大域，而JSP中有4大域，他是最后一个域对象<ul>
+<li>ServletContext：整个应用程序</li>
+<li>session：整个会话(一个会话只有一个用户)</li>
+<li>request：一个请求链</li>
+<li>pageContext：一个jsp页面！这个域是在当前jsp页面和当前jsp页面中十一点表情之间共享数据！是域对象还能代理其他域！比如：pageContext.setAttribute(“xxx”,”XXX”,PageContext.SESSION_SCOPE);</li>
+<li>pageContext：还可以全域查找第一次是在page，request，session，application范围查找名称为那么的数据，如果找到就停止查找。这说明在这个范围内有相同名称的数据那么page范围的优先级最高。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>include-静态包含</p>
+<ul>
+<li>与RequestDispatcher的include()方法的功能相似！</li>
+<li>&lt; %@include%&gt;它是在jsp编译成java1文件时完成的！他们共同生成的一个java文件，然后再生成一个class</li>
+<li>RequestDispatcher的include()是一个方法，包含和被包含的是两个servlet，即两个.class！他们只是把相应的内容在运行时合并了！</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>taglib-导入标签库</p>
+<ul>
+<li>两个属性prefix：指定表情库在本页面中的前缀！由我们自己来起名称！</li>
+</ul>
+</li>
+<li><p>uri：指定变迁库的位置</p>
+<ul>
+<li>&lt;%@taglib prefix=”s” uri=”/struts-tags”%&gt;&lt; s:text&gt;</li>
+</ul>
+</li>
+<li><p>JSP动作标签</p>
+<p>这些JSP的动作标签，与html提供的标签有本质的区别这些标签是由tomcat来解释执行，html由浏览器执行</p>
+<ul>
+<li>&lt; jsp:forward&gt;转发：与RequestDispatcher的forward方法是一样的，一个是在Servlet中使用，一个是在jsp中使用</li>
+<li>&lt; jsp:include&gt;包含：它与RequestDispatcher的include方法是一样的，一个是在Servlet中使用，一个是在jsp中使用</li>
+<li>&lt; %@include&gt;和&lt; jsp:include&gt;有什么不同<ul>
+<li>&lt; jsp:include&gt;最后变成了一个方法调用，而&lt; %@include&gt;是直接写在当中</li>
+</ul>
+</li>
+<li>&lt; jsp:param&gt;：它用来作为forward和include的子标签！用来给转发或包含的页面传递参数！</li>
+</ul>
+</li>
+<li><p>JSP在web.xml中的配置</p>
+</li>
+</ul>
+<h2 id="JavaBean规范"><a href="#JavaBean规范" class="headerlink" title="JavaBean规范"></a>JavaBean规范</h2><ol>
+<li>必须要有默认构造器</li>
+<li>提供get/set方法，如果只有get方法，那么这个属性是只读属性</li>
+<li><p>属性：有get/set方法的成员，还可以没有成员，只有get/set方法。属性名称有get/set方法来决定，而不是成员名称。</p>
+</li>
+<li><p>方法名称满足一定的规范，那么它就是属性！boolean类型的属性，它的读方法可以是is开头，也可以是get开头！</p>
+</li>
+</ol>
+<p><strong>内省获取BeanInfo</strong></p>
+<p>通过java.beans.Introspector的getBeanInfo()方法来获取java.beans.BeanInfo实例。</p>
+<p>通过内省类–&gt;Bean信息–&gt;属性描述符–&gt;属性的get/set对应的Method–&gt;可以反射</p>
+<p>通过工具类commons-beanutils来完成</p>
+<p><strong>JSP中与javabean相关的标签</strong></p>
+<p>&lt; jsp:useBean&gt;–&gt;创建或查询bean—&lt; jsp:useBean id=”user1” class=”cn.itcast.domain.User” scope=”page”/&gt;表示在session域中查找名为user1的bean，如果不存在。就创建</p>
+<p>&lt; jsp:setProperty&gt;—–&lt; jsp:setProperty property=”username” name=”user1” value=”admin”&gt;设置user1的增javabean的username属性值为admin和&lt; jsp:getProperty&gt;—-&lt;jsp:getProperty property=”username” name=”user1”/&gt;获取名为user1的javabean的名为username的属性值</p>
+<h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><ol>
+<li><p>EL表达式是JSP内置表达语言</p>
+<p>从jsp2.0开始不在使用java脚本，而是使用二楼标的是和动态标签来代替java脚本！EL代替是的&lt; %=%&gt;也就是EL只能做输出。</p>
+</li>
+<li><p>EL表达式来读取四大域</p>
+<p>${xxx},全域查找pageContext_XXX pageContext_XXX request_XXX session_XXX application_XXX获取指定域属性</p>
+</li>
+<li><p>javaBean导航</p>
+</li>
+<li></li>
+<li><p>一共11个内置对象</p>
+<ul>
+<li>pageScope</li>
+<li>requestScope</li>
+<li>sessionScope</li>
+<li>applicationScope</li>
+<li>param：是一个Map，key为参数名，value是参数值，适用于单值参数</li>
+<li>paramValues：键是字符串，值是字符串数组</li>
+<li>header：对应请求头，它是一个Map，其中key表示参数名，value是参数值，适用于多值的参数</li>
+<li>headerValues：对应参数，它是一个Map，其中key表示头名称，value是多个参数值，适用于多值请求头</li>
+<li>cookie：Map&lt;String,Cookie&gt;类型，其中key是cookie的name，value是cookie对象</li>
+<li>pageContext：它pageContext类型!${pageContext.request.contextPath}</li>
+</ul>
+<h3 id="EL函数库-JSTL提供"><a href="#EL函数库-JSTL提供" class="headerlink" title="EL函数库(JSTL提供)"></a>EL函数库(JSTL提供)</h3><p>&lt;%@ taglib prefix=”fn” uri=”<a href="http://java.sun.com/jsp/jstl/functions&quot;" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/functions&quot;</a> %&gt;导入库</p>
+<ol>
+<li><p>函数库介绍</p>
+<ul>
+<li>String toUpperCase(String input)</li>
+<li>String toLowerCase(String input)</li>
+<li>int indexOf(String inout,String substring)</li>
+<li>boolean contains(String input,String substring)</li>
+<li>boolean containsIgnoreCase(String input,String substring)</li>
+<li>boolean startsWith(String input,String substring)：是否以小串为前缀</li>
+<li>boolean endWith(String input,String substring)：是否以小串为后缀</li>
+<li>String substring(String input,int beginIndex.int endIndex)：截取子串</li>
+<li>String substringAfter(String input,String substring)：</li>
+<li>String  substringBefore(String input,String substring)</li>
+<li>String escapeXml(String input)把字符串的&gt;&lt;.。转义</li>
+<li>String trim(String input)：剔除空格</li>
+<li>String replace(String input,String substringBefore,String substringAfter)：</li>
+<li>String[] split(String input,String delimiters)：分割字符串</li>
+<li>int length(Object obj)</li>
+<li>String join(String array[],String separator)：联合字符串数组</li>
+</ul>
+</li>
+<li><p>自定义函数库</p>
+<p>bug未解决</p>
+</li>
+<li><p>JSTL标签库</p>
+<ol>
+<li><p>什么是JSTL：JSTL是apachedui1EL表达式的扩展</p>
+</li>
+<li><p>JSTL4大标签库：</p>
+<ul>
+<li><p>core:核心标签库，学习重点</p>
+<p>out和set，remove，url，if，choose，forEach</p>
+<p>&lt;c:out value=”${a}” default=”xxx” escapeXml=”false”&gt;</p>
+<p>&lt;c:set var=”a” value=”hello”/&gt;</p>
+<ol>
+<li><p>&lt;c:set var=”a” value=”hello” scope=”session”/&gt;scope是域可以选择</p>
+</li>
+<li><p>&lt;c:remove var=”a”&gt;删除所有与中该var的变量，如果指定域则只删除该域的变量</p>
+</li>
+<li>url：给value指定路径！它会在路径前面自动添加项目名。&lt;c:url value=”/index.jsp”/&gt; 可以给URL后面追加参数。子标签：&lt;c:param name =”username” value=”张三”/&gt;</li>
+</ol>
+<p>&lt;c:if test=”布尔类型”&gt;…&lt; /c:if&gt;java中的if，</p>
+<p>&lt; c:choose&gt;   &lt; c:when test=${score&gt;90}&gt;A级&lt; /c:when&gt;&lt; c:otherwise&gt;&lt; /c:otherwise&gt;</p>
+<p>&lt; c:forEach&gt; &lt; /c:forEach&gt;</p>
+<p>&lt; c:forEach var=”item” items=”${ns}” varStatus=”vs”&gt;&lt; /c:forEach&gt;</p>
+<p>vs.count:循环元素的个数。vs.index：循环元素的下标。vs.first：是否为第一个元素vs.last是否为最后一个元素，vs.current：当前元素</p>
+</li>
+<li><p>fmt：格式化标签库，学习对日期的格式化和数字的格式化</p>
+<p>&lt; fmt:dateFormatDate value=”${d}” pattren=”yyyy-MM-dd HH:mm:ss”&gt;value指定一个Date类型的变量</p>
+<p>&lt; fmt:formatNumber value=”” pattern=””&gt;</p>
+</li>
+<li><p>sql：过时</p>
+</li>
+<li><p>xml过时</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="自定义标签"><a href="#自定义标签" class="headerlink" title="自定义标签"></a>自定义标签</h2><p>SimpleTag接口的5个方法</p>
+<ul>
+<li>void doTag()：每次执行标签时调用此方法</li>
+<li>JspTag getParent()：返回父标签</li>
+<li>void setParent(JspTag)：设置父标签</li>
+<li>void setJspBody(JspFrament)：设置标签体</li>
+<li>void setJspContext(JspContext) ：设置jsp上下文对象，它儿子是PageContext</li>
+</ul>
+<p>标签体内容：</p>
+<ul>
+<li>empty：无标签体</li>
+<li>scriptless：只能是EL表达式，也可以是其他标签</li>
+<li>tagdependent：标签体内容不会被执行，而是直接赋值标签处理类。</li>
+</ul>
+<p>不在执行标签下面内容的标签：在标签处理类中的doTag()中使用SkipPageExcepion来结束！Tomcat会调用标签</p>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果啊<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/红黑树/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://hulinjian.com/2019/09/19/JSP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/反射/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/File类基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2019/09/19/监听器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/19/网络编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字节字符输出流/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字符流和字节流基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/正则表达/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/链表/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/基础类库/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.522Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/监听器/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:52.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/JSP/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:32.572Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -405,8 +659,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://hulinjian.com">
-  <title>Archives | 分享</title>
+  <title>分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java学习笔记">
-<meta property="og:type" content="website">
+  <meta name="description" content="监听器监听器是一个接口，由我们实现内容，需要注册如在按钮上注册，挡土墙只不过的方法，会在特殊事件发生时被调遣。 观察者  事件源 小偷   事件 偷东西   监听器 警察 监听器中的方法：抓捕     JavaWeb中的监听器：  事件源：三大域  ServletContext  生命周期监听：ServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。   c">
+<meta property="og:type" content="article">
 <meta property="og:title" content="分享">
-<meta property="og:url" content="http://hulinjian.com/archives/index.html">
+<meta property="og:url" content="http://hulinjian.com/2019/09/19/监听器/index.html">
 <meta property="og:site_name" content="分享">
-<meta property="og:description" content="Java学习笔记">
+<meta property="og:description" content="监听器监听器是一个接口，由我们实现内容，需要注册如在按钮上注册，挡土墙只不过的方法，会在特殊事件发生时被调遣。 观察者  事件源 小偷   事件 偷东西   监听器 警察 监听器中的方法：抓捕     JavaWeb中的监听器：  事件源：三大域  ServletContext  生命周期监听：ServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。   c">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-10T04:12:54.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享">
-<meta name="twitter:description" content="Java学习笔记">
+<meta name="twitter:description" content="监听器监听器是一个接口，由我们实现内容，需要注册如在按钮上注册，挡土墙只不过的方法，会在特殊事件发生时被调遣。 观察者  事件源 小偷   事件 偷东西   监听器 警察 监听器中的方法：抓捕     JavaWeb中的监听器：  事件源：三大域  ServletContext  生命周期监听：ServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。   c">
   
     <link rel="alternative" href="/atom.xml" title="分享" type="application/atom+xml">
   
@@ -153,235 +154,250 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-监听器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h1><p>监听器是一个接口，由我们实现内容，需要注册如在按钮上注册，挡土墙只不过的方法，会在特殊事件发生时被调遣。</p>
+<p><strong>观察者</strong></p>
+<ul>
+<li>事件源<ul>
+<li>小偷</li>
+</ul>
+</li>
+<li>事件<ul>
+<li>偷东西</li>
+</ul>
+</li>
+<li>监听器<ul>
+<li>警察</li>
+<li>监听器中的方法：抓捕</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>JavaWeb中的监听器：</p>
+<ul>
+<li><p>事件源：三大域</p>
+<ul>
+<li><p>ServletContext</p>
+<ul>
+<li>生命周期监听：ServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。</li>
+</ul>
+<ul>
+<li><p>contextInitialized(ServletContextEvent)</p>
+</li>
+<li><p>contextDestroyed(ServletContextEvent)</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>属性监听：ServketContextAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用</p>
+<ul>
+<li>attributeAdded(ServletContextAttributeEvent scab)  <ul>
+<li>attributeReplaced(ServletContextAttributeEvent scab)</li>
+</ul>
+</li>
+<li>attributeRemoved(ServletContextAttributeEvent scab)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>HttpSession</p>
+<ul>
+<li>生命周期监听：HttpServletContextListener,它有两个方法，一个在出生时调用，一个在死亡时调用。<ul>
+<li>void sessionCreated(HttpSessionEvent )</li>
+<li>void sessionDestroyed(HttpSessionEvent)</li>
+</ul>
+</li>
+<li>属性监听：HttpServletContextAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用<ul>
+<li>attributeAdded(HttpSeissionBindingEvent event)  </li>
+<li>attributeReplaced(HttpSeissionBindingEvent event)</li>
+<li>attributeRemoved(HttpSeissionBindingEvent event)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ServletRequest:</p>
+<ul>
+<li>生命周期监听：ServletRequestListener,它有两个方法，一个在出生时调用，一个在死亡时调用。<ul>
+<li>void requestInitialized(ServletRequestEvent)</li>
+<li>void requestDestroyed(ServletRequestEvent)</li>
+</ul>
+</li>
+<li>属性监听：ServketRequesttAttributeListener,它有三个方法，一个在添加属性是调用，一个在替换属性是调用，最后一个是在移除时调用<ul>
+<li>attributeAdded(ServletRequestAttributeEvent scab)  </li>
+<li>attributeReplaced(ServletRequestAttributeEvent scab)</li>
+<li>attributeRemoved(ServletRequestAttributeEvent scab)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>事件对象</p>
+<ul>
+<li>ServletContextEvent:ServletContext getServletContext()</li>
+<li>HttpSessionEvent:HttpSession getSession()</li>
+<li>ServletRequest:<ul>
+<li>ServletContext getServletContext()</li>
+<li>ServletRequest getServletRequest()</li>
+</ul>
+</li>
+<li>ServletContextAttributeEvent()<ul>
+<li>ServletContext getServletContext()</li>
+<li>String getName()</li>
+<li>String getValue()</li>
+</ul>
+</li>
+<li>HttpSessionBindingEvent:略</li>
+<li>ServletRequestAttributeEvent:略</li>
+</ul>
+<p>感知监听(都与HttpSession相关)</p>
+<ul>
+<li>它用来添加到JavaBean上，而不是添加到三大域上！</li>
+<li>这两个监听器都不需要在web.xml中注册</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果啊<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/红黑树/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://hulinjian.com/2019/09/19/监听器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/反射/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/File类基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2019/09/19/基础类库/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/19/JSP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字节字符输出流/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字符流和字节流基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/正则表达/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/链表/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/基础类库/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.522Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/监听器/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:52.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/JSP/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:32.572Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -405,8 +421,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://hulinjian.com">
-  <title>Archives | 分享</title>
+  <title>分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java学习笔记">
-<meta property="og:type" content="website">
+  <meta name="description" content="字符流和字节流区别在使用OutputStream类输出的时候如果现在没有使用close()方法关闭输出流，内容也可以存入，但使用Writer时候没有关闭输出则无法存入，因为Writer使用到了缓冲区。当使用close()会有强制刷新缓冲区的情况，所以会将内容进行输出，如果不关闭需要使用flush()强制刷新。使用缓冲区的字节流更适合中文的处理。 转换子类InputStreamReader和Outp">
+<meta property="og:type" content="article">
 <meta property="og:title" content="分享">
-<meta property="og:url" content="http://hulinjian.com/archives/index.html">
+<meta property="og:url" content="http://hulinjian.com/2019/09/19/字符流和字节流基本操作/index.html">
 <meta property="og:site_name" content="分享">
-<meta property="og:description" content="Java学习笔记">
+<meta property="og:description" content="字符流和字节流区别在使用OutputStream类输出的时候如果现在没有使用close()方法关闭输出流，内容也可以存入，但使用Writer时候没有关闭输出则无法存入，因为Writer使用到了缓冲区。当使用close()会有强制刷新缓冲区的情况，所以会将内容进行输出，如果不关闭需要使用flush()强制刷新。使用缓冲区的字节流更适合中文的处理。 转换子类InputStreamReader和Outp">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-13T03:49:45.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享">
-<meta name="twitter:description" content="Java学习笔记">
+<meta name="twitter:description" content="字符流和字节流区别在使用OutputStream类输出的时候如果现在没有使用close()方法关闭输出流，内容也可以存入，但使用Writer时候没有关闭输出则无法存入，因为Writer使用到了缓冲区。当使用close()会有强制刷新缓冲区的情况，所以会将内容进行输出，如果不关闭需要使用flush()强制刷新。使用缓冲区的字节流更适合中文的处理。 转换子类InputStreamReader和Outp">
   
     <link rel="alternative" href="/atom.xml" title="分享" type="application/atom+xml">
   
@@ -153,235 +154,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-字符流和字节流基本操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符流和字节流"><a href="#字符流和字节流" class="headerlink" title="字符流和字节流"></a>字符流和字节流</h1><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>在使用OutputStream类输出的时候如果现在没有使用close()方法关闭输出流，内容也可以存入，但使用Writer时候没有关闭输出则无法存入，因为Writer使用到了缓冲区。当使用close()会有强制刷新缓冲区的情况，所以会将内容进行输出，如果不关闭需要使用flush()强制刷新。使用缓冲区的字节流更适合中文的处理。</p>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p>子类<strong>InputStreamReader和OutputStreamWriter</strong></p>
+<p>通过类的继承结果与构造方法可以发现，转换流就是将字节流通过向上转型转化为字符流对象。</p>
+<h2 id="内存操作流"><a href="#内存操作流" class="headerlink" title="内存操作流"></a>内存操作流</h2><p>ByteArrayInputStream构造：public ByteArrayInputStream(byte[] buf)</p>
+<p>ByteArrayOutputStream构造：public ByteArrayOutputStream();</p>
+<p>获取数据：public byte[] toByteArray();</p>
+<p>使用字符串的形式来获取：public String toString();</p>
+<h2 id="管道流"><a href="#管道流" class="headerlink" title="管道流"></a>管道流</h2><p>实现2个线程之间的IO处理操作</p>
+<p>字节管道流：PipedOutputStream，PipedInputStream</p>
+<p>字符管道流：PipedWriter、PipedReader</p>
+<h2 id="RandomAccessFile"><a href="#RandomAccessFile" class="headerlink" title="RandomAccessFile"></a>RandomAccessFile</h2><p>读取数据：</p>
+<ul>
+<li>向下找：public int skipBytes(int n)throws IOException</li>
+<li>向回找：public void seek(long pos) throws IOException</li>
+</ul>
+<h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><p>PrintStream和PrintWriter可以完成流的使有操作且更加方便</p>
+<h2 id="System"><a href="#System" class="headerlink" title="System"></a>System</h2><ul>
+<li>标准输出(显示器)：public static final PrintStream out；</li>
+<li>错误输出：public static final PrintStream err;</li>
+<li>标准输入(键盘)：public static final PrintStream ；</li>
+</ul>
+<h2 id="BufferedReader缓冲输入流"><a href="#BufferedReader缓冲输入流" class="headerlink" title="BufferedReader缓冲输入流"></a>BufferedReader缓冲输入流</h2><p>读取一行数据：public String readLine() throws IOException</p>
+<h2 id="Scanner扫描流"><a href="#Scanner扫描流" class="headerlink" title="Scanner扫描流"></a>Scanner扫描流</h2><p>主要目的是为了解决输入流的访问问题，可以理解为BufferedReader的替代功能类</p>
+<ul>
+<li>构造：public Scanner(InputStream source)</li>
+<li>判断是否有数据：public boolean hasNext()</li>
+<li>取出数据：public String next()</li>
+<li>设置分隔符：public Scanner useDelimiter(String pattren)</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果啊<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/红黑树/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://hulinjian.com/2019/09/19/字符流和字节流基本操作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/反射/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/File类基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2019/09/19/字节字符输出流/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/19/正则表达/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字节字符输出流/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/字符流和字节流基本操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.525Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/正则表达/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/链表/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/基础类库/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:45:18.522Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/监听器/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:52.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/19/JSP/" class="archive-article-date">
-  	<time datetime="2019-09-19T02:44:32.572Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -405,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
