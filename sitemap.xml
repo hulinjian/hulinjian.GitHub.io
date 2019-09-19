@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hulinjian.com/about/index.html</loc>
+    
+    <lastmod>2019-09-19T02:10:01.817Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hulinjian.com/2019/09/18/%E8%BF%87%E6%BB%A4%E5%99%A8/</loc>
+    
+    <lastmod>2019-08-09T01:36:29.440Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://hulinjian.com/2019/04/08/JDBC/</loc>
     
-    <lastmod>2019-04-08T13:33:17.720Z</lastmod>
+    <lastmod>2019-04-20T14:13:43.737Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hulinjian.com/2019/04/09/hello-world/</loc>
+    
+    <lastmod>2019-04-09T11:57:58.796Z</lastmod>
     
   </url>
   

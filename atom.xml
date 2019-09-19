@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>网站标题</title>
+  <title>分享</title>
   
-  <subtitle>网站副标题</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hulinjian.com/"/>
-  <updated>2019-04-08T13:33:17.720Z</updated>
+  <updated>2019-08-09T01:36:29.440Z</updated>
   <id>http://hulinjian.com/</id>
   
   <author>
-    <name>网站作者名字</name>
+    <name>一个小白的日常</name>
     
   </author>
   
@@ -18,12 +18,54 @@
   
   <entry>
     <title></title>
+    <link href="http://hulinjian.com/2019/09/18/%E8%BF%87%E6%BB%A4%E5%99%A8/"/>
+    <id>http://hulinjian.com/2019/09/18/过滤器/</id>
+    <published>2019-09-18T12:48:21.308Z</published>
+    <updated>2019-08-09T01:36:29.440Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h1><p><strong>JavaWeb三大组件：Servlet，Listener(2个感知监听器不需要配置)，Filter</strong></p><p>过滤器会在一组资源（jsp，servlet，css，html等等）的前面执行；</p><p>他可以让请求得到目标资源，也可以不让请求达到，过滤器有拦截请求的能力。Filter是单例的。</p><h3 id="Filter接口"><a href="#Filter接口" class="headerlink" title="Filter接口"></a>Filter接口</h3><ul><li>void init(FilterConfig )创建之后执行，Filter会在服务器启动时创建</li><li>void destroy()销毁之前执行，在服务器关闭时销毁</li><li>void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)每次过滤都会执行</li></ul><p>FilterConfig–&gt;与ServletConfig相似</p><ul><li>获取参数参数：getInitParameter()</li><li>获取过滤器名称：getFilterName()</li><li>获取application：getServletContext()</li></ul><h4 id="FilterChain"><a href="#FilterChain" class="headerlink" title="FilterChain"></a>FilterChain</h4><p>doFilter(ServletRequest,ServletResponse)方法的参数中有一个类型为FilterChain的参数，它只有一个方法，一个目标资源上可以部署多个过滤器，所以调用FilterChain类的doFilter()方法表示的是执行下一个过滤器的doFilter方法，或者是执行目标资源！如果当前过滤器是最后一个过滤器，那么调用chain.doFilter()方法表示执行目标资源，而不是最后一个过滤器，那么chain.doFilter()表示执行下一个过滤器的doFilter()方法。</p><p>FilterChain#doFilter()方法：执行目标资源，或是执行下一个过滤器！如果没有下一个过滤器那么执行的是目标资源，如果有则执行下一个过滤器。</p><h3 id="过滤器的4种拦截方式"><a href="#过滤器的4种拦截方式" class="headerlink" title="过滤器的4种拦截方式"></a>过滤器的4种拦截方式</h3><ul><li>请求 DISPATCHER</li><li>转发 FORWARD</li><li>包含 INCLUDE</li><li>错误 ERROR</li></ul><h3 id="控制过滤器执行顺序"><a href="#控制过滤器执行顺序" class="headerlink" title="控制过滤器执行顺序"></a>控制过滤器执行顺序</h3><p>多个过滤器的执行顺</p><p>在<filter-mapping>的配置顺序决定了过滤器的执行顺序</filter-mapping></p><h3 id="过滤器应用场景"><a href="#过滤器应用场景" class="headerlink" title="过滤器应用场景"></a>过滤器应用场景</h3><ul><li>执行目标之前做预处理工作,列如设置编码，这种通常都会放行，只是在目标资源执行之前做一个准备工作</li><li>通过调节判断是否放行，例如检验当前用户是否已经登录，或者用户IP是否已经被禁用；</li><li>在目标资源执行后，做一个后续的特殊处理工作，如吧目标资源输出的数据进行处理。</li></ul><h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><ul><li>分IP统计网站的访问次数</li><li>粗粒度权限管理（404）</li><li>字符乱码问题(get方法直接400)</li><li>图书管理</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;过滤器&quot;&gt;&lt;a href=&quot;#过滤器&quot; class=&quot;headerlink&quot; title=&quot;过滤器&quot;&gt;&lt;/a&gt;过滤器&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;JavaWeb三大组件：Servlet，Listener(2个感知监听器不需要配置)，Filter&lt;/strong&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://hulinjian.com/2019/04/09/hello-world/"/>
+    <id>http://hulinjian.com/2019/04/09/hello-world/</id>
+    <published>2019-04-09T11:57:58.788Z</published>
+    <updated>2019-04-09T11:57:58.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="http://hulinjian.com/2019/04/08/JDBC/"/>
     <id>http://hulinjian.com/2019/04/08/JDBC/</id>
     <published>2019-04-08T13:30:46.038Z</published>
-    <updated>2019-04-08T13:33:17.720Z</updated>
+    <updated>2019-04-20T14:13:43.737Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p>　持久化：把数据保存起来可供使用。持久化实现过程大多通过关系数据库来完成。通过JDBC直接访问数据库。JDBC是java访问数据库的基石。</p><p>JDBC驱动类型只了解本地协议的纯Java驱动程序。即Java应用程序–&gt;JDBC API–&gt;JDBC驱动程序–&gt;数据库</p><p>Java.sql.Driver 接口是所有JDBC驱动程序需要实现的接口。这个接口是提供给数据库厂商使用的，不同数据库厂商提供不同的实现。<br>在程序中不需要直接去访问实现了Driver接口的类，而是由驱动程序管理类java.sql.DriverManager去调用这些Driver实现</p><p>根据视频操作中有些类没有接触过java.util.Properties。里面用了put方法，我没有在API中看到这个实现方法，然后是propertyNames()这个文档中是说：返回属性列表中所有键的枚举，如果在主属性列表中未找到同名的键，则包括默认属性列表中不同的键。</p><p>具体操作：</p><ol><li>准备驱动的全类名，JDBC URL，user，password等东西。<ul><li>获取jdbc.properties对应输入流</li><li>加载对应的输入流</li><li>决定字符串</li></ul></li><li>加载驱动程序(通过反射的方式完成，反射没学，先用直接用着看)</li><li>通过DriverManager的getConnection()方法获取数据库连接</li></ol><p>好处：可以通过重载的getConnection获取数据库，十分方便，且可以同时管理多个驱动程序（但是暂时无用）</p><h2 id="通过JDBC向指定数据表插入数据"><a href="#通过JDBC向指定数据表插入数据" class="headerlink" title="通过JDBC向指定数据表插入数据"></a>通过JDBC向指定数据表插入数据</h2><p>具体操作：</p><ol><li>获取数据库连接</li><li>准备插入SQL语句</li><li>执行插入<ul><li>获取SQL语句的Statement对象：调用Connection的createStatement()方法来获取</li><li>调用Statement对象的executeUpdate(sql)执行SQL语句进行插入</li><li>关闭Statement对象</li></ul></li><li>关闭连接</li></ol><p>问题：当运行代码的时候数据库并没有添加成功。然后重新观察在连接居然无法连接成功，注释掉添加的代码后还是无法连接到数据库。改着改着只剩下Run On Server了无法在Junit Test上运行而错误也成为了没有运行的方法。但是原来是找不到文件。然后换了一个文件夹重新操作复制粘贴，结果成功了，成功了！！！</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p>　持久化：把数据保存起来可供使用。持久化实现过程大多通过关系数据库来完成。通过JDBC直接访问数据库。JDBC是java访问数据库的基石。</p><p>JDBC驱动类型只了解本地协议的纯Java驱动程序。即Java应用程序–&gt;JDBC API–&gt;JDBC驱动程序–&gt;数据库</p><p>Java.sql.Driver 接口是所有JDBC驱动程序需要实现的接口。这个接口是提供给数据库厂商使用的，不同数据库厂商提供不同的实现。<br>在程序中不需要直接去访问实现了Driver接口的类，而是由驱动程序管理类java.sql.DriverManager去调用这些Driver实现</p><p>根据视频操作中有些类没有接触过java.util.Properties。里面用了put方法，我没有在API中看到这个实现方法，然后是propertyNames()这个文档中是说：返回属性列表中所有键的枚举，如果在主属性列表中未找到同名的键，则包括默认属性列表中不同的键。</p><p>具体操作：</p><ol><li>准备驱动的全类名，JDBC URL，user，password等东西。<ul><li>获取jdbc.properties对应输入流</li><li>加载对应的输入流</li><li>决定字符串</li></ul></li><li>加载驱动程序(通过反射的方式完成，反射没学，先用直接用着看)</li><li>通过DriverManager的getConnection()方法获取数据库连接</li></ol><p>好处：可以通过重载的getConnection获取数据库，十分方便，且可以同时管理多个驱动程序（但是暂时无用）</p><h2 id="通过JDBC向指定数据表插入数据"><a href="#通过JDBC向指定数据表插入数据" class="headerlink" title="通过JDBC向指定数据表插入数据"></a>通过JDBC向指定数据表插入数据</h2><p>具体操作：</p><ol><li>获取数据库连接</li><li>准备插入SQL语句</li><li>执行插入<ul><li>获取SQL语句的Statement对象：调用Connection的createStatement()方法来获取</li><li>调用Statement对象的executeUpdate(sql)执行SQL语句进行插入</li><li>关闭Statement对象</li></ul></li><li>关闭连接</li></ol><p>神奇的SQL注入：<strong>select * from users where username=’a’ or password = ‘ and password = ‘or ‘1’=’1’;</strong>当用户登录的时候账号输入：‘a’ or password = 密码输入：or ‘1’=‘1’即可直接登入跳过审核。</p><hr><p>###　通过反射及元数据编写通用查询方法</p><ul><li>利用SQL进行查询获得结果集</li><li>利用反射创建实例类的对象，</li><li>获取结果集的类的别名：</li><li>再获取结果集的每一列的值，结合3得到一个Map，键，列的别名，值，列的值</li><li>再利用反射为2的对应的属性赋值，属性即为Map的键，值即为Map的值</li></ul><p><strong>使用JDBC驱动程序处理元数据</strong></p><ul><li>Java通过JDBC获得连接后，得到一个Connection读写，可以从这个对象获得有关数据库系统的各种信息</li><li>获取这些信息的方法是在DatabaseMetaData类的对象上实现的，而DataBaseMetaData对象是在Connection对象上获得</li></ul><h4 id="ResultSetMaetaData"><a href="#ResultSetMaetaData" class="headerlink" title="ResultSetMaetaData"></a>ResultSetMaetaData</h4><ol><li><p>使用情况：当有一个结果集，但不知道该结果集中有多少列，列的名字都是什么可以使用ResultSetMaetaData。</p></li><li><p>编写程序通用的查询方法时需要使用：public <t> T get (Class<t> clazz,String sql,Object…args)</t></t></p></li><li><p>用于描述ResultSet对象</p></li><li>如何得到：通过ResultSet的getMetaDate()方法来得到。然后通过里面的两个方法来获取键和值，建立Map对象。</li></ol><h4 id="通用查询方法"><a href="#通用查询方法" class="headerlink" title="通用查询方法"></a>通用查询方法</h4><p>可以根据传入的SQL和claas对象返回对应的记录的对象。</p><p>实现该方法需要综合使用反射，JDBC，JDBC元数据的知识。</p><ol><li>得到ResultSet对象。</li><li>得到ResultSetMetaData对象</li><li>创建一个Map&lt;String,Object&gt;对象，键:SQL查询的别名，值列的值</li><li>处理结果集，利用ResultSetMetADate对象填充结果集</li><li>若反射不为空，</li><li>遍历Map对象，利用反射为Class对象的对应属性赋值</li></ol><h3 id="DAO"><a href="#DAO" class="headerlink" title="DAO"></a>DAO</h3><p>可实现功能的模块化，有利于功能的维护和升级。</p><p>DAO是什么：访问数据信息的类，包含对数据的CRUD(create,read,update,delete),而不包含任何业务相关的信息。</p><p>实现JDBC编写DAO可能会包含的方法</p><ul><li>void update(String sql,Object … objects):更新数据sql可以是update,select,delete</li><li><t> T get(Class<t> clazz,String sql,Object … objects):查询一条数据，返回对应的对象</t></t></li><li><t>List<t>getForList(Class<t> clazz,String sql,Object … args):查询多条数据，返回对应的对象的集合</t></t></t></li><li><e> E getForValue(String sql,Object … args):返回某条记录的某一个字段的值或一个统计的值</e></li></ul><hr><h3 id="Oracle-LOB"><a href="#Oracle-LOB" class="headerlink" title="Oracle LOB"></a>Oracle LOB</h3><ul><li><p>LOB是用来存储大量的二进制和文本的一种数据类型分两种类型内部LOB和外部LOB</p></li><li><p>,MySql BLOB：BLOB是一个二进制大型对象，是一个可以存储大量数据的容器，它能容纳不同大小的属性，类型TinyBlob(255),Blob(65k),MediumBlob(16M),LongBlob(4G)</p></li></ul><h3 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h3><ul><li><p>在数据库中，所谓事务是指一组逻辑操作单元，使数据从一种状态变换到领一种状态。</p></li><li><p>事务的操作:先定义开始一个事务，然后对数据作修改操作，这时如果提交，这些修改就永久的保存下来，如果回退，数据库管理系统将放弃所作的修改而回到开始事务时的状态。</p></li><li><p>事务的ACID属性;原子性，一致性，隔离性，持久性。</p><ul><li>原子性：原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</li><li>一致性：事务必须使数据库从一个一致性状态变化到另外一个一致性状态</li><li><p>隔离性：事务的隔离性是指一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据的并非的其他1事务是隔离的，并发执行的各个事务之间不能互相干扰。</p></li><li><p>持久性指一个事务一旦被提交，它对数据库中数据点改变就是永久性的，接下来的其他操作和数据库故障不应该对其有任何影响</p></li></ul><h3 id="JDBC事务处理"><a href="#JDBC事务处理" class="headerlink" title="JDBC事务处理"></a>JDBC事务处理</h3><p>当一个连接对象被创建时，默认情况下是自动提交事务：每次执行一个SQL语句时，如果执行成功，就会想数据库自动提交，而不能回滚</p><p>为了让多个SQL语句作为一个事务执行：</p><ul><li>调用Connection对象的setAutoCommit(false)取消自动提交事务</li><li>在所有SQ语句都成功执行后，调用commit()方法提交事务</li><li>在出现异常时，调用rollback();方法回滚事务</li><li>若此时Connection没有被关闭，则需要回复其自动提交状态</li></ul><p>脏读：对于T1,T2两个事务，T1读取了语句被T2更新但没有被提交的字段后，T2回滚,T1读取的内容就是临时且无效的</p><p>不可重复读：对于两个事务T1，T2，T1读取了一个字段，然后T2更新了该字段后，T1再次读取同一个字段，值就不同。</p><p>幻读：对于T1,T2两个事务，T1从一个表中读取了一个字段，然后T2在该表中插入一些新的慌之后，如果T1再次读取同一个表就会多出几行。</p><p><strong>数据事务的隔离性</strong>：数据库系统必须具有隔离并发运行各个事务的能力，使他们不会相互影响，避免各种并发问题。一个事务与其他事务的隔离程度称为隔离级别，隔离级别越高，数据的一致性越好，并发性越弱。</p><p><strong>事务的4种事务隔离级别</strong>：读未提交数据，读以提交数据，可重复读，串行话（独立提交最为合适）</p></li></ul><hr><h3 id="关于一些类库及其使用的说明"><a href="#关于一些类库及其使用的说明" class="headerlink" title="关于一些类库及其使用的说明"></a>关于一些类库及其使用的说明</h3><p>由于里面使用了一些类库之前并未接触所以从API中找到文档做一下笔记</p><ul><li><p>java.sql.Statement：用于执行静态 SQL 语句并返回它所生成结果的对象。</p><ul><li>boolean execute(String sql)  执行给定的 SQL 语句，该语句可能返回多个结果。</li><li>Connection getConnection()：获取生成此 <code>Statement</code> 对象的 <code>Connection</code> 对象。</li><li>void close() ：立即释放此 <code>Statement</code> 对象的数据库和 JDBC 资源，而不是等待该对象自动关闭时发生此操作。</li><li>int executeUpdate(String sql)执行给定 SQL 语句，该语句可能为 <code>INSERT</code>、<code>UPDATE</code>或 <code>DELETE</code> 语句，或者不返回任何内容的 SQL 语句（如 SQL DDL 语句）。</li></ul></li><li><p>java.sql.Connetion：与特定数据库的连接（会话）。在连接上下文中执行 SQL 语句并返回结果。</p><ul><li>createStatement创建一个Statement对象，该对象将生成具有给定类型和并发性的 <code>ResultSet</code> 对象。</li><li>void close():关闭;</li><li>prepareStatement(String sql,String[] columnNames):   创建一个能返回由给定数组指定的自动生成键的默认 <code>PreparedStatement</code> 对象。</li><li>setAutoCommit(boolean autoCommit)：将此链接的自动提交模式设置为给定状态。</li></ul></li><li><p>java.util.Properties：<code>Properties</code> 类表示了一个持久的属性集。<code>Properties</code> 可保存在流中或从流中加载。(他的子类Provider里面有一个put(Object key,Object value) 设置可以的属性，使其具有指定的value）</p><ul><li>getProperty(String key): 用指定的键在此属性列表中搜索属性。</li><li>void  load(InputStream inStream)从输入流中读取属性列表（键和元素对）</li><li>Properties() 构造方法创建一个默认值的空属性列表。</li></ul></li><li><p>java.sql.Driver：每个驱动程序类必须实现的接口。Java SQL 框架允许多个数据库驱动程序。</p><ul><li>Connection connect(String url,Properties info)：试图创建一个到给定 URL 的数据库连接。</li></ul></li><li><p>java.sql.ResultSet：表示数据库结果集的数据表，通常通过执行查询数据库的语句生成。</p><ul><li>getDate(int columnIndex)传递列的索引。</li></ul></li><li><p>java.sql.PreparedStatement：标识预编译的SQL语句的对象。</p></li><li><p>java.sql.ResultSetMetaData：可用于获取关于 <code>ResultSet</code> 对象中列的类型和属性信息的对象。（调用ResultSet的getMetaData()方法： 获取此 <code>ResultSet</code> 对象的列的编号、类型和属性。）</p><ul><li>getColumnCount()：SQL语句包含那些列</li><li>getColumnLabel(int column)：获取指定的列的别名，其中索引从1开始</li></ul></li><li><p>java.sql.DatabaseMetaData: 关于数据库的综合信息。</p></li></ul><p><strong>面向对象方式编写JDBC程序</strong></p><p>问题1：当运行代码的时候数据库并没有添加成功。然后重新观察在连接居然无法连接成功，注释掉添加的代码后还是无法连接到数据库。改着改着只剩下Run On Server了无法在Junit Test上运行而错误也成为了没有运行的方法。但是原来是找不到文件。然后换了一个文件夹重新操作复制粘贴，结果成功了，成功了！！！<br>进过不断的踩坑发现当我的jdbc文件放错路径且当在Url后面加入一串?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC即可。</p><p>问题2:当我在同一个包里面设置了另外一个工具类，类里实现连接数据库的方法，和关闭连接的方法。但是会出现空指针异常，问题出在文件反射，通过一些查询并未解决。然后直接在本类中操作。虽然有报异常但是可以实现查询操作。</p><p>问题3:为什么我进行成功后任然会出现空指针异常，但是确实对数据库进行了操作这不太合逻辑啊。或许是对异常的理解出现偏差，还有正常方法不要使用@Test</p><p>问题4:一个不算问题的问题，在连接数据库的时候要十分注意自己的拼写问题，否则整个代码可能和教程没有任何误差但是却无法找到对应数据库的信息。还有不要漏掉@Test否则连接不到数据库。（不过这种情况可能只有掉坑里才会有印象深刻吧。）</p><p>问题5：在反射时出现问题暂不明白问题根源，开始是使用的newInstance()有问题，但是百度后使用getDeclaredConstructor().newInstance()，仍然出现一样的结果，抛出异常显示的是我在百度copy的ReflectionUtils的问题。暂时跳过此问题继续学习。</p><p>问题6：</p>]]></content>
     
     <summary type="html">
     
